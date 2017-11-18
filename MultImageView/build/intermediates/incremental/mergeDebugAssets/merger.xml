@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/home/wangjf/Work/AD/myweibo/MultImageView/src/main/assets"/><source path="/home/wangjf/Work/AD/myweibo/MultImageView/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/home/wangjf/Work/AD/myweibo/MultImageView/src/debug/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/home/wangjf/work/MyWeibo/MultImageView/src/main/assets"/><source path="/home/wangjf/work/MyWeibo/MultImageView/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/home/wangjf/work/MyWeibo/MultImageView/src/debug/assets"/></dataSet></merger>

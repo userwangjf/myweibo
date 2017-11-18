@@ -4,7 +4,15 @@
         "source": "/home/wangjf/.android/build-cache/71167322fd75e88608e07c6968dcc616850cbe8b/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
     },
     {
+        "merged": "/home/wangjf/work/MyWeibo/MultImageView/build/intermediates/res/merged/androidTest/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/home/wangjf/.android/build-cache/ea237944d885694762a962803df8508eb65110b0/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
         "merged": "/home/wangjf/Work/AD/myweibo/MultImageView/build/intermediates/res/merged/androidTest/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
         "source": "/home/wangjf/.android/build-cache/71167322fd75e88608e07c6968dcc616850cbe8b/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "/home/wangjf/work/MyWeibo/MultImageView/build/intermediates/res/merged/androidTest/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/home/wangjf/.android/build-cache/ea237944d885694762a962803df8508eb65110b0/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
     }
 ]

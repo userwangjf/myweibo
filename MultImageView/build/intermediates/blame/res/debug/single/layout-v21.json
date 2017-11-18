@@ -12,7 +12,23 @@
         "source": "/home/wangjf/.android/build-cache/71167322fd75e88608e07c6968dcc616850cbe8b/output/res/layout-v21/notification_action_tombstone.xml"
     },
     {
+        "merged": "/home/wangjf/work/MyWeibo/MultImageView/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/home/wangjf/.android/build-cache/ea237944d885694762a962803df8508eb65110b0/output/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/home/wangjf/work/MyWeibo/MultImageView/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/home/wangjf/.android/build-cache/ea237944d885694762a962803df8508eb65110b0/output/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/home/wangjf/work/MyWeibo/MultImageView/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/home/wangjf/.android/build-cache/ea237944d885694762a962803df8508eb65110b0/output/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
         "merged": "/home/wangjf/Work/AD/myweibo/MultImageView/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
         "source": "/home/wangjf/.android/build-cache/71167322fd75e88608e07c6968dcc616850cbe8b/output/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/home/wangjf/work/MyWeibo/MultImageView/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/home/wangjf/.android/build-cache/ea237944d885694762a962803df8508eb65110b0/output/res/layout-v21/notification_action_tombstone.xml"
     }
 ]
