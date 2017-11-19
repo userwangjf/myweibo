@@ -8,7 +8,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/MultImageView" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/okhttputils" />
             <option value="$PROJECT_DIR$/showweibo" />
             <option value="$PROJECT_DIR$/simplerefreshlayout" />
             <option value="$PROJECT_DIR$/swipeback" />

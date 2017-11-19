@@ -17,8 +17,8 @@
         android:text="正在加载"
         android:id="@+id/tv_load_text"
         android:layout_marginLeft="3dp"
-        android:textColor="#838685"
-        android:textSize="13sp"
+        android:textColor="#000000"
+        android:textSize="14sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
