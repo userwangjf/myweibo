@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "create a new repository on the command line"
+echo "git init"
+echo "git add README.md"
+echo "git commit -m \"first commit\""
+echo "git remote add origin https://github.com/userwangjf/mytest.git"
+echo "git push -u origin master"
+echo "git pull origin master"
+
