@@ -1,11 +1,13 @@
 package com.wangjf.myweibo.weibohome.view;
 
+import android.content.Context;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +20,22 @@ import com.dengzq.simplerefreshlayout.SimpleLoadView;
 import com.dengzq.simplerefreshlayout.SimpleRefreshLayout;
 import com.dengzq.simplerefreshlayout.SimpleRefreshView;
 import com.wangjf.myweibo.weibohome.R;
+import com.wangjf.myweibo.weibohome.bean.ShowWeiboBean;
+import com.wangjf.myweibo.weibohome.presenter.ShowWeiboImplIntf;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
 
-public class ShowWeiboActivity extends AppCompatActivity {
+
+public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefreshLayout.OnSimpleRefreshListener,ShowWeiboViewIntf {
 
     RecyclerView        mRecyclerView;
     SimpleRefreshLayout mSimpleRefreshLayout;
+    ShowWeiboAdapter    mAdapter;
+
+    List<ShowWeiboBean> mData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,77 +51,127 @@ public class ShowWeiboActivity extends AppCompatActivity {
         mSimpleRefreshLayout.setFooterView(new SimpleLoadView(this));
         mSimpleRefreshLayout.setBottomView(new SimpleBottomView(this));
 
-        mSimpleRefreshLayout.setOnSimpleRefreshListener(new SimpleRefreshLayout.OnSimpleRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mData.add(0, "新加刷新数据");
-                        mAdapter.notifyDataSetChanged();
-                        mSimpleRefreshLayout.onRefreshComplete();
+        mSimpleRefreshLayout.setOnSimpleRefreshListener(this);
 
-                    }
-                }, 1000);
-            }
+        mAdapter = new ShowWeiboAdapter(ShowWeiboActivity.this);
 
-            @Override
-            public void onLoadMore() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mData.add(mData.size(), "新加加载数据");
-                        mAdapter.notifyDataSetChanged();
-                        mSimpleRefreshLayout.onLoadMoreComplete();
-
-                        if (mData.size() >= 18) {
-                            mSimpleRefreshLayout.showNoMore(true);
-                        }
-                    }
-                }, 1000);
-            }
-        });
-
-        initData();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
+        initData();
     }
 
-    List<String> mData = new ArrayList<>();
 
     private void initData() {
+
         for (int i = 0; i < 15; i++) {
-            mData.add("第" + i + "个");
+            ShowWeiboBean bean = new ShowWeiboBean();
+            bean.setMsg("haha " + i);
+            mData.add(bean);
+            Log.i("WJF","init data" + mData.get(i).getMsg());
+        }
+        for(int i=0;i<15;i++){
+            Log.i("WJF","init data" + mData.get(i).getMsg());
         }
     }
 
-    private RecyclerView.Adapter mAdapter = new RecyclerView.Adapter() {
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new MyViewHolder(LayoutInflater.from(ShowWeiboActivity.this).inflate(R.layout.item_recycler_view, parent, false));
+    @Override
+    public void onRefresh() {
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                Log.i("WJF","ShowWeibo onRefresh");
+                ShowWeiboBean bean = new ShowWeiboBean();
+                bean.setMsg("insert");
+                mData.add(0,bean);
+                mAdapter.notifyDataSetChanged();
+                mSimpleRefreshLayout.onRefreshComplete();
+
+            }
+        }, 50);
+
+    }
+
+    @Override
+    public void onLoadMore() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                ShowWeiboBean bean = new ShowWeiboBean();
+                bean.setMsg("append");
+                mData.add(bean);
+                mAdapter.notifyDataSetChanged();
+                mSimpleRefreshLayout.onLoadMoreComplete();
+
+            }
+        }, 50);
+
+    }
+
+    public class ShowWeiboViewHolder extends RecyclerView.ViewHolder {
+
+        TextView mTextView;
+
+        public ShowWeiboViewHolder(View itemView) {
+            super(itemView);
+            mTextView = (TextView) itemView.findViewById(R.id.id_sweibo_context);
+        }
+    }
+
+    public class ShowWeiboAdapter extends RecyclerView.Adapter<ShowWeiboViewHolder> {
+
+        Context mContext;
+
+        public ShowWeiboAdapter(Context context) {
+            mContext = context;
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            TextView tv = (TextView) holder.itemView.findViewById(R.id.tv_text);
-            tv.setText(mData.get(position));
+        public ShowWeiboViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+            View v = LayoutInflater.from(mContext).inflate(R.layout.layout_weibo_item, parent, false);
+            return new ShowWeiboViewHolder(v);
+        }
+
+        @Override
+        public void onBindViewHolder(ShowWeiboViewHolder holder, int position) {
+            //设置数据
+            holder.mTextView.setText(mData.get(position).getMsg());
+            //Log.i("WJF","pos:" + position);
         }
 
         @Override
         public int getItemCount() {
-            return mData.size();
-        }
-    };
-
-    private class MyViewHolder extends RecyclerView.ViewHolder {
-
-        TextView  mTextView;
-        ImageView mIvImage;
-
-        MyViewHolder(View itemView) {
-            super(itemView);
-            mTextView = (TextView) itemView.findViewById(R.id.tv_text);
+            if(mData == null)
+                return 0;
+            else
+                return mData.size();
         }
     }
 
+    @Override
+    public void addWeibo(List<ShowWeiboBean> weibo) {
+        mData = weibo;
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void showFailMsg(String msg) {
+        Toasty.warning(ShowWeiboActivity.this,msg,Toast.LENGTH_SHORT,true).show();
+    }
 }
