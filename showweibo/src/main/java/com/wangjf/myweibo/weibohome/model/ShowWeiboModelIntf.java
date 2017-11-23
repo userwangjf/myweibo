@@ -5,6 +5,6 @@ package com.wangjf.myweibo.weibohome.model;
  */
 
 public interface ShowWeiboModelIntf {
-    void getWeibo();
-    void getWeiboMore();
+    void getWeibo(final OnLoadWeiboListener listener);
+    void getWeiboMore(final OnLoadWeiboListener listener);
 }

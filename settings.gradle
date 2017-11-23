@@ -1,6 +1,7 @@
-include ':app', ':showweibo'
+include ':app', ':showweibo', ':myutils'
 include ':swipeback'
 include ':toasty'
 include ':simplerefreshlayout'
 include ':MultImageView'
 include ':okhttputils'
+include ':urlhttputils'

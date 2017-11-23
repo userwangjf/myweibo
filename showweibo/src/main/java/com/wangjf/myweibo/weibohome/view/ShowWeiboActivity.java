@@ -21,6 +21,7 @@ import com.dengzq.simplerefreshlayout.SimpleRefreshLayout;
 import com.dengzq.simplerefreshlayout.SimpleRefreshView;
 import com.wangjf.myweibo.weibohome.R;
 import com.wangjf.myweibo.weibohome.bean.ShowWeiboBean;
+import com.wangjf.myweibo.weibohome.presenter.ShowWeiboImpl;
 import com.wangjf.myweibo.weibohome.presenter.ShowWeiboImplIntf;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
     RecyclerView        mRecyclerView;
     SimpleRefreshLayout mSimpleRefreshLayout;
     ShowWeiboAdapter    mAdapter;
+    private ShowWeiboImpl mPresenter;
 
     List<ShowWeiboBean> mData = new ArrayList<>();
 
@@ -58,6 +60,8 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
         initData();
+
+        mPresenter = new ShowWeiboImpl(this);
     }
 
 
@@ -77,6 +81,7 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
     @Override
     public void onRefresh() {
 
+        mPresenter.getWeibo();
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
