@@ -37,7 +37,7 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
     ShowWeiboAdapter    mAdapter;
     private ShowWeiboImpl mPresenter;
 
-    List<ShowWeiboBean> mData = new ArrayList<>();
+    List<ShowWeiboBean.DataBean.WeiboBean> mData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,63 +59,8 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
-        initData();
 
         mPresenter = new ShowWeiboImpl(this);
-    }
-
-
-    private void initData() {
-
-        for (int i = 0; i < 15; i++) {
-            ShowWeiboBean bean = new ShowWeiboBean();
-            bean.setMsg("haha " + i);
-            mData.add(bean);
-            Log.i("WJF","init data" + mData.get(i).getMsg());
-        }
-        for(int i=0;i<15;i++){
-            Log.i("WJF","init data" + mData.get(i).getMsg());
-        }
-    }
-
-    @Override
-    public void onRefresh() {
-
-        mPresenter.getWeibo();
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                Log.i("WJF","ShowWeibo onRefresh");
-                ShowWeiboBean bean = new ShowWeiboBean();
-                bean.setMsg("insert");
-                mData.add(0,bean);
-                mAdapter.notifyDataSetChanged();
-                mSimpleRefreshLayout.onRefreshComplete();
-
-            }
-        }, 50);
-
-    }
-
-    @Override
-    public void onLoadMore() {
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                ShowWeiboBean bean = new ShowWeiboBean();
-                bean.setMsg("append");
-                mData.add(bean);
-                mAdapter.notifyDataSetChanged();
-                mSimpleRefreshLayout.onLoadMoreComplete();
-
-            }
-        }, 50);
-
     }
 
     public class ShowWeiboViewHolder extends RecyclerView.ViewHolder {
@@ -146,7 +91,7 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
         @Override
         public void onBindViewHolder(ShowWeiboViewHolder holder, int position) {
             //设置数据
-            holder.mTextView.setText(mData.get(position).getMsg());
+            holder.mTextView.setText(mData.get(position).getContent());
             //Log.i("WJF","pos:" + position);
         }
 
@@ -160,8 +105,31 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
     }
 
     @Override
-    public void addWeibo(List<ShowWeiboBean> weibo) {
-        mData = weibo;
+    public void onRefresh() {
+        mPresenter.getWeibo();
+    }
+
+    @Override
+    public void onLoadMore() {
+        mPresenter.getWeiboMore();
+    }
+
+    @Override
+    public void addWeibo(List<ShowWeiboBean.DataBean.WeiboBean> weibo) {
+
+        mData.clear();
+        for(int i=0;i<weibo.size();i++) {
+            mData.add(weibo.get(i));
+        }
+
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void refreshWeibo(List<ShowWeiboBean.DataBean.WeiboBean> weibo) {
+        for(int i=0;i<weibo.size();i++) {
+            mData.add(weibo.get(i));
+        }
         mAdapter.notifyDataSetChanged();
     }
 
@@ -172,7 +140,8 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
 
     @Override
     public void hideProgress() {
-
+        mSimpleRefreshLayout.onRefreshComplete();
+        mSimpleRefreshLayout.onLoadMoreComplete();
     }
 
     @Override

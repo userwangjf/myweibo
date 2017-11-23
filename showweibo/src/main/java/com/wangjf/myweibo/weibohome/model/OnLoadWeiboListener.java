@@ -8,7 +8,7 @@ import com.wangjf.myweibo.weibohome.bean.ShowWeiboBean;
 
 public interface OnLoadWeiboListener {
 
-    void onSuccess(String json);
+    void onSuccess(int type, String json);
 
     void onFailure(String msg);
 

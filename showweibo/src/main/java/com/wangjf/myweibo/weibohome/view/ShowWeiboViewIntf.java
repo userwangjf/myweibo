@@ -10,7 +10,8 @@ import java.util.List;
 
 public interface ShowWeiboViewIntf {
 
-    void addWeibo(List<ShowWeiboBean> weibo);
+    void addWeibo(List<ShowWeiboBean.DataBean.WeiboBean> weibo);
+    void refreshWeibo(List<ShowWeiboBean.DataBean.WeiboBean> weibo);
 
     void showProgress();
     void hideProgress();
