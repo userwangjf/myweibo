@@ -1,6 +1,7 @@
 package com.wangjf.myweibo.weibohome.view;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,8 +21,11 @@ import com.dengzq.simplerefreshlayout.SimpleBottomView;
 import com.dengzq.simplerefreshlayout.SimpleLoadView;
 import com.dengzq.simplerefreshlayout.SimpleRefreshLayout;
 import com.dengzq.simplerefreshlayout.SimpleRefreshView;
+import com.wangjf.MultImageView.MultImageView;
+import com.wangjf.myweibo.config.UrlCfg;
 import com.wangjf.myweibo.weibohome.R;
 import com.wangjf.myweibo.weibohome.bean.ShowWeiboBean;
+import com.wangjf.myweibo.weibohome.model.ShowWeiboModel;
 import com.wangjf.myweibo.weibohome.presenter.ShowWeiboImpl;
 import com.wangjf.myweibo.weibohome.presenter.ShowWeiboImplIntf;
 
@@ -42,6 +47,7 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_weibo_home);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mSimpleRefreshLayout = (SimpleRefreshLayout) findViewById(R.id.simple_refresh);
@@ -63,13 +69,16 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
         mPresenter = new ShowWeiboImpl(this);
     }
 
+
     public class ShowWeiboViewHolder extends RecyclerView.ViewHolder {
 
         TextView mTextView;
+        MultImageView mMultImage;
 
         public ShowWeiboViewHolder(View itemView) {
             super(itemView);
             mTextView = (TextView) itemView.findViewById(R.id.id_sweibo_context);
+            mMultImage = (MultImageView) itemView.findViewById(R.id.id_sweibo_image);
         }
     }
 
@@ -91,8 +100,34 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
         @Override
         public void onBindViewHolder(ShowWeiboViewHolder holder, int position) {
             //设置数据
-            holder.mTextView.setText(mData.get(position).getContent());
+
             //Log.i("WJF","pos:" + position);
+            if(mData == null)
+                return;
+            else if(mData.size() > position) {
+                holder.mTextView.setText(mData.get(position).getContent());
+
+                if(mData.get(position).getPic() != null) {
+                    //防止显示错乱
+                    holder.mMultImage.resetView();
+                    List<String> imgs = null;
+                    imgs = new ArrayList<>();
+                    for(int i=0;i<mData.get(position).getPic().size();i++){
+                        String UrlPic = UrlCfg.getUrlHost() + mData.get(position).getPic().get(i).getUrl();
+                        Log.i("WJF",UrlPic);
+                        imgs.add(UrlPic);
+                        holder.mMultImage.setList(imgs);
+                        holder.mMultImage.setOnItemClickListener(new MultImageView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Log.d("WJF", "click: " + position);
+                            }
+                        });
+                    }
+                }
+            }
+
+
         }
 
         @Override

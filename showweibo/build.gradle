@@ -52,4 +52,5 @@ dependencies {
     compile project(':MultImageView')
     compile project(':urlhttputils')
     compile project(':gson')
+    compile project(':config')
 }

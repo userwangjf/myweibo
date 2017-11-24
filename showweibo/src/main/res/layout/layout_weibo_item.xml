@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
+    android:background="#FFFFFF"
     android:clickable="true"
     android:orientation="vertical">
 
@@ -11,7 +12,7 @@
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:paddingBottom="4dp"
-        android:paddingTop="4dp"
+        android:paddingTop="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:textSize="16dp"
@@ -19,18 +20,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!--
     <com.wangjf.MultImageView.MultImageView
         android:id="@+id/id_sweibo_image"
-        android:background="#FFFFFF"
+
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
-        android:paddingBottom="4dp"
+        android:paddingBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:paddingTop="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-        -->
 
 </LinearLayout>

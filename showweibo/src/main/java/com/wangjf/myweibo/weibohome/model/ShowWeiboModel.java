@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.guozheng.urlhttputils.urlhttp.CallBackUtil;
 import com.guozheng.urlhttputils.urlhttp.UrlHttpUtil;
+import com.wangjf.myweibo.config.UrlCfg;
 
 import java.util.HashMap;
 
@@ -15,10 +16,6 @@ import java.util.HashMap;
 
 public class ShowWeiboModel implements ShowWeiboModelIntf {
 
-    private String UrlHost = "http://192.168.1.103/myweibo";
-    //private String UrlGetWeibo = UrlHost + "?service=weibo.getweibo&page=0&count=5";
-    //private String UrlGetWeiboMore = UrlHost + "?service=weibo.getweibo&page=1$count=5";
-
     private int page = 0;
     private int count = 5;
 
@@ -26,7 +23,7 @@ public class ShowWeiboModel implements ShowWeiboModelIntf {
     public void getWeibo(final OnLoadWeiboListener listener) {
         page = 0;
         count = 5;
-        String UrlGetWeibo = String.format("%s/%s%s%d%s%d",UrlHost,"?service=weibo.getweibo",
+        String UrlGetWeibo = String.format("%s/%s%s%d%s%d",UrlCfg.getUrlHost(),"?service=weibo.getweibo",
                 "&page=",page,"&count=",count);
         Log.i("WJF","getWeibo: " + UrlGetWeibo);
         UrlHttpUtil.post(UrlGetWeibo, null, new CallBackUtil.CallBackString() {
@@ -45,7 +42,7 @@ public class ShowWeiboModel implements ShowWeiboModelIntf {
     @Override
     public void getWeiboMore(final OnLoadWeiboListener listener) {
         page += count;
-        String UrlGetWeiboMore = String.format("%s/%s%s%d%s%d",UrlHost,"?service=weibo.getweibo",
+        String UrlGetWeiboMore = String.format("%s/%s%s%d%s%d",UrlCfg.getUrlHost(),"?service=weibo.getweibo",
                 "&page=",page,"&count=",count);
         Log.i("WJF","getWeibo: " + UrlGetWeiboMore);
         UrlHttpUtil.post(UrlGetWeiboMore, null, new CallBackUtil.CallBackString() {

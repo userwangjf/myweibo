@@ -10,6 +10,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:name=".view.ShowWeiboActivity">
             <!--
             <intent-filter>

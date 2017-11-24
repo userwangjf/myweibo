@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.wangjf.myweibo.makeweibo.MakeWeiboActivity;
 import com.wangjf.myweibo.weibohome.view.ShowWeiboActivity;
 
 import es.dmoral.toasty.Toasty;
@@ -21,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setFullScreen();
+        //setFullScreen();
 
         setContentView(R.layout.activity_login);
 
@@ -47,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onMakeWeibo(View v) {
         Toasty.success(LoginActivity.this, "开始创作微搏", Toast.LENGTH_SHORT, true).show();
-        mStartIntent = new Intent(LoginActivity.this, ShowWeiboActivity.class);
+        mStartIntent = new Intent(LoginActivity.this, MakeWeiboActivity.class);
         startActivity(mStartIntent);
         finish();
     }
