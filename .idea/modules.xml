@@ -5,10 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/MultImageView/MultImageView.iml" filepath="$PROJECT_DIR$/MultImageView/MultImageView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/config/config.iml" filepath="$PROJECT_DIR$/config/config.iml" />
-      <module fileurl="file://$PROJECT_DIR$/gson/gson.iml" filepath="$PROJECT_DIR$/gson/gson.iml" />
+      <module fileurl="file://$PROJECT_DIR$/config/config.iml" filepath="$PROJECT_DIR$/config/config.iml" />
       <module fileurl="file://$PROJECT_DIR$/gson/gson.iml" filepath="$PROJECT_DIR$/gson/gson.iml" />
       <module fileurl="file://$PROJECT_DIR$/makeweibo/makeweibo.iml" filepath="$PROJECT_DIR$/makeweibo/makeweibo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/myutils/myutils.iml" filepath="$PROJECT_DIR$/myutils/myutils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/makeweibo/makeweibo.iml" filepath="$PROJECT_DIR$/makeweibo/makeweibo.iml" />
       <module fileurl="file://$PROJECT_DIR$/myutils/myutils.iml" filepath="$PROJECT_DIR$/myutils/myutils.iml" />
       <module fileurl="file://$PROJECT_DIR$/myweibo.iml" filepath="$PROJECT_DIR$/myweibo.iml" />
       <module fileurl="file://$PROJECT_DIR$/okhttputils/okhttputils.iml" filepath="$PROJECT_DIR$/okhttputils/okhttputils.iml" />
@@ -16,7 +16,6 @@
       <module fileurl="file://$PROJECT_DIR$/simplerefreshlayout/simplerefreshlayout.iml" filepath="$PROJECT_DIR$/simplerefreshlayout/simplerefreshlayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/swipeback/swipeback.iml" filepath="$PROJECT_DIR$/swipeback/swipeback.iml" />
       <module fileurl="file://$PROJECT_DIR$/toasty/toasty.iml" filepath="$PROJECT_DIR$/toasty/toasty.iml" />
-      <module fileurl="file://$PROJECT_DIR$/urlhttputils/urlhttputils.iml" filepath="$PROJECT_DIR$/urlhttputils/urlhttputils.iml" />
       <module fileurl="file://$PROJECT_DIR$/urlhttputils/urlhttputils.iml" filepath="$PROJECT_DIR$/urlhttputils/urlhttputils.iml" />
     </modules>
   </component>
