@@ -58,6 +58,7 @@ public class ShowWeiboImpl implements ShowWeiboImplIntf,OnLoadWeiboListener {
 
     @Override
     public void onFailure(String msg) {
-
+        mWeiboView.showFailMsg(msg);
+        mWeiboView.hideProgress();
     }
 }

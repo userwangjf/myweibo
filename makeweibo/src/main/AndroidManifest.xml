@@ -7,8 +7,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
         <activity
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:name=".MakeWeiboActivity">
+            android:name=".view.MakeWeiboActivity">
 
         </activity>
     </application>

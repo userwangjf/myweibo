@@ -118,8 +118,8 @@ import java.util.Map;
     private HttpURLConnection getHttpURLConnection(String requestURL,String requestMethod) throws IOException {
         URL url = new URL(requestURL);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setConnectTimeout(10*1000);
-        conn.setReadTimeout(15*1000);
+        conn.setConnectTimeout(5*1000);
+        conn.setReadTimeout(10*1000);
         conn.setRequestMethod(requestMethod);
         return conn;
     }
