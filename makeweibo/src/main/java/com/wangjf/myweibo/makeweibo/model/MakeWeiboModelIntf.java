@@ -10,5 +10,5 @@ import java.util.List;
  */
 
 public interface MakeWeiboModelIntf {
-    void addWeibo(String weiboBean, List<File> pics, final OnUploadWeiboListener listener);
+    void addWeibo(String weiboJson, String picJson, List<File> picfs, final OnUploadWeiboListener listener);
 }

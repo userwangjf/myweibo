@@ -17,8 +17,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.wangjf.myweibo.makeweibo.R;
+import com.wangjf.myweibo.makeweibo.bean.MakePicBean;
 import com.wangjf.myweibo.makeweibo.bean.MakeWeiboBean;
 import com.wangjf.myweibo.makeweibo.presenter.MakeWeiboImpl;
 import com.yongchun.library.view.ImageSelectorActivity;
@@ -82,39 +84,60 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void onClickSend() {
-        MakeWeiboBean weiboData = new MakeWeiboBean();
-        List<File> pics = new ArrayList<>();
-        List<MakeWeiboBean.PicBean> pic_list = new ArrayList<>();
-        weiboData.setContent(mMakeWeiboContext.getText().toString());
-        weiboData.setType("公开");
-        if (mData.size() == 1) {
-            pics = null;
-            pic_list = null;
-        }
-        else {
-            //如果有图片，则添加图片日期
+        MakeWeiboBean weiboBean = new MakeWeiboBean();
+        MakePicBean picBean = new MakePicBean();
+        List<File> picfs = new ArrayList<>();
+        List<MakePicBean.PicInfo> picInfos = new ArrayList<>();
+        Gson makeGson = new Gson();
 
+        //创建微博内容，并转换为json字符串
+        weiboBean.setContent(mMakeWeiboContext.getText().toString());
+        weiboBean.setType("公开");
+        String weiboJson = makeGson.toJson(weiboBean);
+
+        //添加图片信息
+        if (mData.size() == 1) {
+            picBean = null;
+            picfs = null;
+        } else {
+            //如果有图片，则添加图片日期
             for(int i=0;i<mData.size()-1;i++) {
-                pics.add(new File(mData.get(i)));
+                picfs.add(new File(mData.get(i)));
                 try {
+                    //通过Exif获取照片的拍摄日期
                     ExifInterface exif = new ExifInterface(mData.get(i));
                     String exif_date = exif.getAttribute(ExifInterface.TAG_DATETIME);
-                    MakeWeiboBean.PicBean picbean = new MakeWeiboBean.PicBean();
-                    picbean.setCtime(exif_date);
-                    picbean.setUrl("pics");
-                    pic_list.add(picbean);
-                    Log.i("WJF", "file time: " + exif_date);
+                    //装载数据到bean
+                    MakePicBean.PicInfo picInfo = new MakePicBean.PicInfo();
+                    picInfo.setCtime(exif_date);
+                    picInfo.setFname(getFileName(mData.get(i)));//先装入文件路径
+                    picInfos.add(picInfo);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
-        weiboData.setPic(pic_list);
-        Gson makeGson = new Gson();
-        String weiboJson = makeGson.toJson(weiboData);
-        Log.i("WJF",weiboJson);
 
-        mPresenter.addWeibo(weiboJson,pics);
+        //将图片信息转换为json字符串
+        picBean.setPicInfos(picInfos);
+        String picJson = makeGson.toJson(picBean);
+        Log.i("WJF","make weiboJson : " + weiboJson);
+        Log.i("WJF","make picJson : " + picJson);
+
+        //发送到服务器
+        mPresenter.addWeibo(weiboJson,picJson,picfs);
+    }
+
+    public String getFileName(String pathName) {
+        int start = pathName.lastIndexOf("/");
+        if (start != -1 ) {
+            return pathName.substring(start + 1);
+        } else {
+            start = pathName.lastIndexOf("\\");
+            if(start != -1)
+                return pathName.substring(start + 1);
+            return null;
+        }
     }
 
     @Override
@@ -227,8 +250,7 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
             }
             else if(mData.size() > position)
             {
-                Bitmap bmp= BitmapFactory.decodeFile(mData.get(position));
-                holder.mImageAdd.setImageBitmap(bmp);
+                Glide.with(MakeWeiboActivity.this).load(mData.get(position)).into(holder.mImageAdd);
                 holder.mImageDel.setVisibility(View.VISIBLE);
             }
 

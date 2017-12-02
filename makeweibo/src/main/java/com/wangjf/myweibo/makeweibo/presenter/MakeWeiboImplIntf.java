@@ -10,5 +10,5 @@ import java.util.List;
  */
 
 public interface MakeWeiboImplIntf {
-    void addWeibo(String weiboBean, List<File> pics);
+    void addWeibo(String weiboJson, String picJson, List<File> picfs);
 }

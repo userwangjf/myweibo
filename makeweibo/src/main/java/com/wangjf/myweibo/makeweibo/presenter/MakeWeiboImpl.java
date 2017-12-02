@@ -40,7 +40,7 @@ public class MakeWeiboImpl implements MakeWeiboImplIntf,OnUploadWeiboListener {
     }
 
     @Override
-    public void addWeibo(String weiboBean, List<File> pics) {
-        mWeiboModel.addWeibo(weiboBean,pics,this);
+    public void addWeibo(String weiboJson, String picJson, List<File> picfs) {
+        mWeiboModel.addWeibo(weiboJson,picJson,picfs,this);
     }
 }

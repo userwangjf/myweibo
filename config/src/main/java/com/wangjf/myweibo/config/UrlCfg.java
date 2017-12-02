@@ -6,8 +6,8 @@ package com.wangjf.myweibo.config;
 
 public class UrlCfg {
 
-    private static String mUrlHost = "http://192.168.43.2/myweibo/";
-    //private static String mUrlHost = "http://192.168.1.103/myweibo/";
+    //private static String mUrlHost = "http://192.168.43.2/myweibo/";
+    private static String mUrlHost = "http://192.168.1.103/myweibo/";
     private static String mUrlGetWeibo = mUrlHost + "";
 
     public static String getUrlHost() {

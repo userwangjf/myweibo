@@ -33,7 +33,6 @@ public class MakeWeiboBean {
     private String collect;
     private String comment;
     private String uid;
-    private List<PicBean> pic;
 
     public MakeWeiboBean() {
         id = "";
@@ -137,37 +136,5 @@ public class MakeWeiboBean {
         this.uid = uid;
     }
 
-    public List<PicBean> getPic() {
-        return pic;
-    }
 
-    public void setPic(List<PicBean> pic) {
-        this.pic = pic;
-    }
-
-    public static class PicBean {
-        /**
-         * url : 2017/11/775202eb80751ed330e0e23c2a8f75ea.jpg
-         * ctime : 1111
-         */
-
-        private String url;
-        private String ctime;
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
-        public String getCtime() {
-            return ctime;
-        }
-
-        public void setCtime(String ctime) {
-            this.ctime = ctime;
-        }
-    }
 }

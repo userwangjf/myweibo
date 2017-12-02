@@ -80,7 +80,7 @@ public class MultImageView extends LinearLayout {
         //add wangjf
         int div;
         if(imagesList.size() <= 4)
-            div = 2;
+            div = 3;
         else
             div = 3;
 

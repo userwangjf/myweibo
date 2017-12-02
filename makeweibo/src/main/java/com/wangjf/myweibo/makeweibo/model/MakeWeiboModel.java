@@ -22,16 +22,18 @@ import java.util.Map;
 public class MakeWeiboModel implements MakeWeiboModelIntf {
 
     @Override
-    public void addWeibo(String weiboBean, List<File> pics, final OnUploadWeiboListener listener) {
+    public void addWeibo(String weiboJson, String picJson, List<File> picfs, final OnUploadWeiboListener listener) {
 
         String UrlMakeWeibo = String.format("%s/%s", UrlCfg.getUrlHost(),
                 "?service=weibo.makeweibo");
         Log.i("WJF","makeWeibo: " + UrlMakeWeibo);
 
         Map<String,String> params = new HashMap<>();
-        params.put("weibo",weiboBean);
+        params.put("weibo",weiboJson);
+        if(picJson != null)
+            params.put("pics",picJson);
 
-        UrlHttpUtil.uploadListFile(UrlMakeWeibo, pics,  "uploadfile[]", UrlHttpUtil.FILE_TYPE_FILE, params, new CallBackUtil.CallBackString() {
+        UrlHttpUtil.uploadListFile(UrlMakeWeibo, picfs,  "uploadfile[]", UrlHttpUtil.FILE_TYPE_FILE, params, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(int code, String errorMessage) {
                 listener.onFailure(errorMessage);

@@ -3,11 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ImagePicker/ImagePicker.iml" filepath="$PROJECT_DIR$/ImagePicker/ImagePicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ImagePicker/ImagePicker.iml" filepath="$PROJECT_DIR$/ImagePicker/ImagePicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/MultImageView/MultImageView.iml" filepath="$PROJECT_DIR$/MultImageView/MultImageView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/config/config.iml" filepath="$PROJECT_DIR$/config/config.iml" />
       <module fileurl="file://$PROJECT_DIR$/gson/gson.iml" filepath="$PROJECT_DIR$/gson/gson.iml" />
       <module fileurl="file://$PROJECT_DIR$/makeweibo/makeweibo.iml" filepath="$PROJECT_DIR$/makeweibo/makeweibo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myimageview/myimageview.iml" filepath="$PROJECT_DIR$/myimageview/myimageview.iml" />
       <module fileurl="file://$PROJECT_DIR$/myimageview/myimageview.iml" filepath="$PROJECT_DIR$/myimageview/myimageview.iml" />
       <module fileurl="file://$PROJECT_DIR$/myutils/myutils.iml" filepath="$PROJECT_DIR$/myutils/myutils.iml" />
       <module fileurl="file://$PROJECT_DIR$/myweibo.iml" filepath="$PROJECT_DIR$/myweibo.iml" />
