@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.jkt.tcompress.TCompress;
 import com.wangjf.myweibo.makeweibo.R;
 import com.wangjf.myweibo.makeweibo.bean.MakePicBean;
 import com.wangjf.myweibo.makeweibo.bean.MakeWeiboBean;
@@ -95,6 +96,15 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
         weiboBean.setType("公开");
         String weiboJson = makeGson.toJson(weiboBean);
 
+        //初始化压缩引擎
+        TCompress tCompress = new TCompress.Builder()
+                .setMaxWidth(1080)
+                .setMaxHeight(1080)
+                .setQuality(100)
+                .setFormat(Bitmap.CompressFormat.JPEG)
+                .setConfig(Bitmap.Config.RGB_565)
+                .build();
+
         //添加图片信息
         if (mData.size() == 1) {
             picBean = null;
@@ -102,7 +112,16 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
         } else {
             //如果有图片，则添加图片日期
             for(int i=0;i<mData.size()-1;i++) {
-                picfs.add(new File(mData.get(i)));
+
+                File compressedFile = tCompress.compressedToFile(new File(mData.get(i)));
+                if (compressedFile == null) {
+                    //请查看文件权限问题（其他问题基本不存在，可以查看日志详情）
+                    Log.i("WJF","压缩失败");
+                    return;
+                } else {
+                    picfs.add(compressedFile);
+                }
+
                 try {
                     //通过Exif获取照片的拍摄日期
                     ExifInterface exif = new ExifInterface(mData.get(i));
@@ -118,6 +137,12 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
             }
         }
 
+
+
+
+
+
+
         //将图片信息转换为json字符串
         picBean.setPicInfos(picInfos);
         String picJson = makeGson.toJson(picBean);
@@ -126,6 +151,10 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
 
         //发送到服务器
         mPresenter.addWeibo(weiboJson,picJson,picfs);
+    }
+
+    public void initCompress() {
+
     }
 
     public String getFileName(String pathName) {
