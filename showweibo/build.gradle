@@ -53,4 +53,5 @@ dependencies {
     compile project(':urlhttputils')
     compile project(':gson')
     compile project(':config')
+    compile project(':photoview')
 }

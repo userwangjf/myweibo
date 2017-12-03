@@ -1,6 +1,8 @@
 package com.wangjf.myweibo.weibohome.view;
 
+import android.app.Activity;
 import android.content.Context;
+import android.media.Image;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +31,8 @@ import com.wangjf.myweibo.weibohome.bean.ShowWeiboBean;
 import com.wangjf.myweibo.weibohome.model.ShowWeiboModel;
 import com.wangjf.myweibo.weibohome.presenter.ShowWeiboImpl;
 import com.wangjf.myweibo.weibohome.presenter.ShowWeiboImplIntf;
+import com.wc.dragphoto.widget.ImageShowActivity;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,12 +84,14 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
             super(itemView);
             mTextView = (TextView) itemView.findViewById(R.id.id_sweibo_context);
             mMultImage = (MultImageView) itemView.findViewById(R.id.id_sweibo_image);
+
         }
     }
 
     public class ShowWeiboAdapter extends RecyclerView.Adapter<ShowWeiboViewHolder> {
 
         Context mContext;
+        int max_width;
 
         public ShowWeiboAdapter(Context context) {
             mContext = context;
@@ -94,13 +101,13 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
         public ShowWeiboViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
             View v = LayoutInflater.from(mContext).inflate(R.layout.layout_weibo_item, parent, false);
+
             return new ShowWeiboViewHolder(v);
         }
 
         @Override
-        public void onBindViewHolder(ShowWeiboViewHolder holder, int position) {
+        public void onBindViewHolder(final ShowWeiboViewHolder holder, int position) {
             //设置数据
-
             //Log.i("WJF","pos:" + position);
             if(mData == null)
                 return;
@@ -110,23 +117,30 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
                 if(mData.get(position).getPic() != null) {
                     //防止显示错乱
                     holder.mMultImage.resetView();
-                    List<String> imgs = null;
-                    imgs = new ArrayList<>();
+                    List<String> imgs = new ArrayList<>();
+                    //添加数据
                     for(int i=0;i<mData.get(position).getPic().size();i++){
                         String UrlPic = UrlCfg.getUrlHost() + mData.get(position).getPic().get(i).getUrl();
                         Log.i("WJF",UrlPic);
                         imgs.add(UrlPic);
-                        holder.mMultImage.setList(imgs);
-                        holder.mMultImage.setOnItemClickListener(new MultImageView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, int position) {
-                                Log.d("WJF", "click: " + position);
-                            }
-                        });
                     }
+                    holder.mMultImage.setList(imgs);
+
+                    //设置click事件
+                    holder.mMultImage.setOnItemClickListener(new MultImageView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+                            Log.d("WJF", "click: " + position);
+                            //list转数组
+                            final String[] imgPath = holder.mMultImage.getImgPathList().toArray(new String[0]);
+                            final ImageView[] imgView = holder.mMultImage.getImgViewList().toArray(new ImageView[0]);
+                            if(imgView.length == 0) return;
+                            if(imgPath.length == 0) return;
+                            ImageShowActivity.startImageActivity((Activity) mContext, imgView,imgPath, position);
+                        }
+                    });
                 }
             }
-
 
         }
 

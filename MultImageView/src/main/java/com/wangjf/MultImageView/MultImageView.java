@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,6 +41,8 @@ public class MultImageView extends LinearLayout {
     // 照片的Url列表
     private List<String> imagesList;
 
+    private List<ImageView> imgViewList;
+
     /**
      * 长度 单位为Pixel
      **/
@@ -55,17 +58,27 @@ public class MultImageView extends LinearLayout {
 
     private OnItemClickListener mOnItemClickListener;
 
+    public List<ImageView> getImgViewList() {
+        return imgViewList;
+    }
+
+    public List<String> getImgPathList() {
+        return imagesList;
+    }
+
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
     }
 
     public MultImageView(Context context) {
         super(context);
+
         Log.i(TAG,"MultiImageView(Context context)");
     }
 
     public MultImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
         Log.i(TAG,"MultiImageView(Context context, AttributeSet attrs)");
     }
 
@@ -76,6 +89,7 @@ public class MultImageView extends LinearLayout {
             throw new IllegalArgumentException("imageList is null...");
         }
         imagesList = lists;
+        imgViewList = new ArrayList<>();
 
         //add wangjf
         int div;
@@ -91,6 +105,8 @@ public class MultImageView extends LinearLayout {
         }
 
         initView();
+
+        Log.i("WJF","imagelist.size = " + imgViewList.size());
     }
 
     @Override
@@ -160,11 +176,9 @@ public class MultImageView extends LinearLayout {
         this.removeAllViews();
         if (MAX_WIDTH == 0) {
             //为了触发onMeasure()来测量MultiImageView的最大宽度，MultiImageView的宽设置为match_parent
-//            addView(new View(getContext()));
-
+            //addView(new View(getContext()));
             measure(0,0);
             Log.i(TAG,"layout width: " + this.getMeasuredWidth());
-
             return;
         }
 
@@ -247,6 +261,8 @@ public class MultImageView extends LinearLayout {
             layout.addView(textView, params);
             return layout;
         }
+
+        imgViewList.add(imageView);
         return imageView;
     }
 
