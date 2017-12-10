@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
 
-    <color name="home_bottombar_topdrive">#eaeaea</color><!--顶部分割线的颜色-->
+    <!--显示微博转发数，评论数，赞数的commentbar-->
+    <color name="weibo_commentbar_normal_bg">#FFFFFF</color><!--普通背景颜色-->
+    <color name="weibo_commentbar_highlight_bg">#ededed</color><!--press的背景颜色-->
+    <color name="weibo_commentbar_virtual_line">#f4f4f4</color><!--竖直的分割线-->
+    <color name="weibo_commentbar_top_line">#eaeaea</color><!--顶部分割线的颜色-->
+    <color name="weibo_commentbar_bg">#FFFFFF</color><!--底部bar的背景样式-->
+    <color name="weibo_commentbar_font">#929292</color><!--底部bar字体颜色-->
+
+    <!-- 微博内容颜色 -->
+    <color name="weibo_item_bg_normal">#FFFFFF</color><!--微博的普通背景颜色-->
+    <color name="weibo_item_bg_highlight">#ededed</color><!--微博的按压的背景颜色-->
+    <color name="weibo_item_text">#333333</color><!--微博内容-->
+
+    <!-- 微搏titlebar颜色设置 -->
+    <color name="weibo_titlebar_profile_name">#f46200</color><!--用户名称-->
+    <color name="weibo_titlebar_profile_time">#828282</color><!--微博时间-->
+    <color name="weibo_titlebar_comefrom">#828282</color><!--微博来源-->
+
+    <!-- 底部快捷按钮 -->
     <color name="home_bottombar_bg">#FFFFFF</color><!--底部bar的背景样式-->
     <color name="home_bottombar_font">#929292</color><!--底部bar字体颜色-->
-
-
-    <color name="primary">#F44336</color>
-    <color name="primary_dark">#D32F2F</color>
-    <color name="primary_light">#FFCDD2</color>
-    <color name="accent">#CDDC39</color>
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#727272</color>
-    <color name="icons">#FFFFFF</color>
-    <color name="divider">#B6B6B6</color>
-
+    <color name="weibo_bottombar_top_line">#eaeaea</color><!--顶部分割线的颜色-->
 
 </resources>
+

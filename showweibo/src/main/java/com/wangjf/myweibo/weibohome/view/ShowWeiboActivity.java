@@ -2,10 +2,6 @@ package com.wangjf.myweibo.weibohome.view;
 
 import android.app.Activity;
 import android.content.Context;
-import android.media.Image;
-import android.os.Build;
-import android.os.Handler;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,9 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,9 +23,7 @@ import com.wangjf.MultImageView.MultImageView;
 import com.wangjf.myweibo.config.UrlCfg;
 import com.wangjf.myweibo.weibohome.R;
 import com.wangjf.myweibo.weibohome.bean.ShowWeiboBean;
-import com.wangjf.myweibo.weibohome.model.ShowWeiboModel;
 import com.wangjf.myweibo.weibohome.presenter.ShowWeiboImpl;
-import com.wangjf.myweibo.weibohome.presenter.ShowWeiboImplIntf;
 import com.wc.dragphoto.widget.ImageShowActivity;
 
 
@@ -46,30 +39,34 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
     SimpleRefreshLayout mSimpleRefreshLayout;
     ShowWeiboAdapter    mAdapter;
     private ShowWeiboImpl mPresenter;
-
+    private RelativeLayout mBarHome, mBarMessage, mBarDiscoery, mBarProfile;
     List<ShowWeiboBean.DataBean.WeiboBean> mData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_weibo_home);
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mSimpleRefreshLayout = (SimpleRefreshLayout) findViewById(R.id.simple_refresh);
+        setContentView(R.layout.layout_show_weibo_home);
 
+        //下拉刷新初始化
+        mSimpleRefreshLayout = (SimpleRefreshLayout) findViewById(R.id.simple_refresh);
         mSimpleRefreshLayout.setScrollEnable(true);
         mSimpleRefreshLayout.setPullUpEnable(true);
         mSimpleRefreshLayout.setPullDownEnable(true);
         mSimpleRefreshLayout.setHeaderView(new SimpleRefreshView(this));
         mSimpleRefreshLayout.setFooterView(new SimpleLoadView(this));
         mSimpleRefreshLayout.setBottomView(new SimpleBottomView(this));
-
         mSimpleRefreshLayout.setOnSimpleRefreshListener(this);
 
+        //微博列表
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mAdapter = new ShowWeiboAdapter(ShowWeiboActivity.this);
-
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
+
+        //底部按钮
+        mBarHome = (RelativeLayout) findViewById(R.id.weibo_bottombar_home);
+        mBarHome.setSelected(true);
 
         mPresenter = new ShowWeiboImpl(this);
     }
