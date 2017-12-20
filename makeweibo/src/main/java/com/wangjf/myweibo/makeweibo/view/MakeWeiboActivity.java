@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.ExifInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -69,7 +70,13 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
         //添加图片的图标
         mData.add("R.drawable.make_weibo_add_pic");
         mAdapter.notifyDataSetChanged();
+    }
 
+    public static Intent newIntent(Context packageContext) {
+        Intent intent = new Intent(packageContext, MakeWeiboActivity.class);
+        //可携带参数
+        //intent.putExtra("xxx","xxx");
+        return intent;
     }
 
     @Override
@@ -80,6 +87,10 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
         }
         else if(id == R.id.id_make_weibo_send) {
             Log.i("WJF","start send weibo");
+
+            //在微博创建成功前，关闭点击功能
+            mMakeWeiboSend.setClickable(false);
+            mMakeWeiboSend.setTextColor(Color.rgb(200,200,200));
             onClickSend();
         }
     }
@@ -137,15 +148,15 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
             }
         }
 
-
-
-
-
-
-
         //将图片信息转换为json字符串
-        picBean.setPicInfos(picInfos);
-        String picJson = makeGson.toJson(picBean);
+        String picJson;
+        //
+        if(picfs == null) {
+            picJson = "{\"picInfos\":[]}";
+        } else {
+            picBean.setPicInfos(picInfos);
+            picJson = makeGson.toJson(picBean);
+        }
         Log.i("WJF","make weiboJson : " + weiboJson);
         Log.i("WJF","make picJson : " + picJson);
 
@@ -185,7 +196,9 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void showOkMsg(String msg) {
-        Toasty.info(this,msg);
+        Toasty.info(this,msg).show();
+        mMakeWeiboSend.setClickable(true);
+        mMakeWeiboSend.setTextColor(Color.rgb(0,0,0));
     }
 
     @Override
@@ -200,7 +213,7 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void showFailMsg(String msg) {
-        Toasty.warning(this,msg);
+        Toasty.warning(this,msg).show();
     }
 
     public class MakeWeiboViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -226,7 +239,7 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
             if(view.getId() == R.id.id_image_add_pic)
                 onClickImageAdd(pos);
             else if(view.getId() == R.id.id_image_del_pic)
-                onClockImageDel(pos);
+                onClickImageDel(pos);
             else
                 Log.i("WJF","click on error");
         }
@@ -246,7 +259,7 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-    public void onClockImageDel(int pos)
+    public void onClickImageDel(int pos)
     {
         Log.i("WJF","click on id_image_del_pic at : " + pos);
         mData.remove(pos);

@@ -2,6 +2,7 @@ package com.wangjf.myweibo.weibohome.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +22,7 @@ import com.dengzq.simplerefreshlayout.SimpleRefreshLayout;
 import com.dengzq.simplerefreshlayout.SimpleRefreshView;
 import com.wangjf.MultImageView.MultImageView;
 import com.wangjf.myweibo.config.UrlCfg;
+import com.wangjf.myweibo.makeweibo.view.MakeWeiboActivity;
 import com.wangjf.myweibo.weibohome.R;
 import com.wangjf.myweibo.weibohome.bean.ShowWeiboBean;
 import com.wangjf.myweibo.weibohome.presenter.ShowWeiboImpl;
@@ -39,7 +41,8 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
     SimpleRefreshLayout mSimpleRefreshLayout;
     ShowWeiboAdapter    mAdapter;
     private ShowWeiboImpl mPresenter;
-    private RelativeLayout mBarHome, mBarMessage, mBarDiscoery, mBarProfile;
+    private RelativeLayout mBarHome, mBarMessage, mBarDiscovery, mBarProfile;
+    private ImageView mBarMakeWeibo;
     List<ShowWeiboBean.DataBean.WeiboBean> mData = new ArrayList<>();
 
     @Override
@@ -67,6 +70,16 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
         //底部按钮
         mBarHome = (RelativeLayout) findViewById(R.id.weibo_bottombar_home);
         mBarHome.setSelected(true);
+        //新建微搏按钮
+        mBarMakeWeibo = (ImageView) findViewById(R.id.id_bar_make_weibo);
+        mBarMakeWeibo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = MakeWeiboActivity.newIntent(ShowWeiboActivity.this);
+                startActivity(intent);
+            }
+        });
+
 
         mPresenter = new ShowWeiboImpl(this);
     }

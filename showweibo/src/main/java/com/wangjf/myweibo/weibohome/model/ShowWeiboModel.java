@@ -41,7 +41,7 @@ public class ShowWeiboModel implements ShowWeiboModelIntf {
 
     @Override
     public void getWeiboMore(final OnLoadWeiboListener listener) {
-        page += count;
+        page++;
         String UrlGetWeiboMore = String.format("%s/%s%s%d%s%d",UrlCfg.getUrlHost(),"?service=weibo.getweibo",
                 "&page=",page,"&count=",count);
         Log.i("WJF","getWeibo: " + UrlGetWeiboMore);

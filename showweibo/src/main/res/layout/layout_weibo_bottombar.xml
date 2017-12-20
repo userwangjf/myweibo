@@ -92,7 +92,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/main_compose_id"
+                android:id="@+id/id_bar_make_weibo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"

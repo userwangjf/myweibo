@@ -54,4 +54,5 @@ dependencies {
     compile project(':gson')
     compile project(':config')
     compile project(':photoview')
+    compile project(':makeweibo')
 }
