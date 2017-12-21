@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="#f2f2f2"
     android:orientation="vertical">
 
     <include layout="@layout/layout_make_weibo_head" />
@@ -10,17 +11,20 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#f0f0f0">
+        android:background="#f2f2f2">
 
         <LinearLayout
             android:id="@+id/idea_linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/id_make_weibo_context"
                 android:hint="输入内容..."
+                android:background="#e0e0e0"
                 android:inputType="textMultiLine"
                 android:gravity="left|top"
                 android:minLines="3"

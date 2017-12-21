@@ -91,6 +91,7 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
             //在微博创建成功前，关闭点击功能
             mMakeWeiboSend.setClickable(false);
             mMakeWeiboSend.setTextColor(Color.rgb(200,200,200));
+            Toasty.info(this,"开始上传微博，请等待...").show();
             onClickSend();
         }
     }

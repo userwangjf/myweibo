@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/id_image_add_pic"
         android:scaleType="centerCrop"
-        android:background="#ffffff"/>
+        android:background="#f2f2f2"/>
 
     <ImageView
         android:id="@+id/id_image_del_pic"

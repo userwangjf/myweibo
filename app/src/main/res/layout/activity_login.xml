@@ -1,26 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white">
 
 
-    <Button
-        android:text="浏览微搏"
-        android:onClick="onShowWeibo"
-        android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:text="创作微搏"
-        android:onClick="onMakeWeibo"
-        android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <!--
     <ImageView
         android:id="@+id/welcome_android_slogan"
         android:layout_width="wrap_content"
@@ -37,6 +21,25 @@
         android:layout_marginBottom="25dp"
         android:src="@drawable/welcome_android_logo" />
 
-        -->
 
-</LinearLayout>
+    <!--
+
+<Button
+    android:text="浏览微搏"
+    android:onClick="onShowWeibo"
+    android:textSize="20sp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+<Button
+    android:text="创作微搏"
+    android:onClick="onMakeWeibo"
+    android:textSize="20sp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+    -->
+
+</RelativeLayout>
+
+

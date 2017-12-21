@@ -8,10 +8,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +23,7 @@ import com.dengzq.simplerefreshlayout.SimpleBottomView;
 import com.dengzq.simplerefreshlayout.SimpleLoadView;
 import com.dengzq.simplerefreshlayout.SimpleRefreshLayout;
 import com.dengzq.simplerefreshlayout.SimpleRefreshView;
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import com.wangjf.MultImageView.MultImageView;
 import com.wangjf.myweibo.config.UrlCfg;
 import com.wangjf.myweibo.makeweibo.view.MakeWeiboActivity;
@@ -44,12 +48,14 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
     private RelativeLayout mBarHome, mBarMessage, mBarDiscovery, mBarProfile;
     private ImageView mBarMakeWeibo;
     List<ShowWeiboBean.DataBean.WeiboBean> mData = new ArrayList<>();
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.layout_show_weibo_home);
+
 
         //下拉刷新初始化
         mSimpleRefreshLayout = (SimpleRefreshLayout) findViewById(R.id.simple_refresh);
@@ -82,6 +88,22 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
 
 
         mPresenter = new ShowWeiboImpl(this);
+
+        createProgressBar();
+    }
+
+    //在屏幕中间显示progressbar
+    private void createProgressBar(){
+        //整个Activity布局的最终父布局,参见参考资料
+        FrameLayout rootFrameLayout=(FrameLayout) findViewById(android.R.id.content);
+        FrameLayout.LayoutParams layoutParams=
+                new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.gravity= Gravity.CENTER;
+        mProgressBar=new ProgressBar(this);
+        mProgressBar.setLayoutParams(layoutParams);
+
+        rootFrameLayout.addView(mProgressBar);
+        mProgressBar.setVisibility(View.GONE);
     }
 
 
@@ -194,11 +216,12 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
 
     @Override
     public void showProgress() {
-
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
+        mProgressBar.setVisibility(View.GONE);
         mSimpleRefreshLayout.onRefreshComplete();
         mSimpleRefreshLayout.onLoadMoreComplete();
     }

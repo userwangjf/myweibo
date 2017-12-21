@@ -12,6 +12,9 @@ import android.widget.Toast;
 import com.wangjf.myweibo.makeweibo.view.MakeWeiboActivity;
 import com.wangjf.myweibo.weibohome.view.ShowWeiboActivity;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends AppCompatActivity {
@@ -26,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
-        /*
+
         mStartIntent = new Intent(LoginActivity.this, ShowWeiboActivity.class);
 
         new Timer().schedule(new TimerTask() {
@@ -35,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                 mHandler.sendMessage(Message.obtain());
             }
         }, 1000);
-        */
+
 
     }
 

@@ -27,6 +27,7 @@ public class ShowWeiboImpl implements ShowWeiboImplIntf,OnLoadWeiboListener {
 
     @Override
     public void getWeibo() {
+        mWeiboView.showProgress();
         mWeiboModel.getWeibo(this);
     }
 
