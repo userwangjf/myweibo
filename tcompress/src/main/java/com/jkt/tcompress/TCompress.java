@@ -8,11 +8,14 @@ import android.graphics.RectF;
 import android.media.ExifInterface;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Field;
 
 /**
  * Created by Allen at 2017/6/5 17:31
@@ -21,7 +24,7 @@ public class TCompress {
     //默认属性，通过构造者模式或者set方法设置
     private int mQuality = 80;
     private float mMaxHeight = 1280;
-    private float mMaxWidth = 960;
+    private float mMaxWidth = 1280;
     private Bitmap.CompressFormat mFormat = Bitmap.CompressFormat.JPEG;
     private Bitmap.Config mConfig = Bitmap.Config.ARGB_8888;
 
@@ -34,6 +37,8 @@ public class TCompress {
             ret = bitmap2File(compressedBitmap);
             bitmap.recycle();
             compressedBitmap.recycle();
+            //复制原始图片的exif信息。
+            saveExif(file.getAbsolutePath(),ret.getAbsolutePath());
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -41,10 +46,31 @@ public class TCompress {
         return ret;
     }
 
+    //复制照片的exif信息。
+    public void saveExif(String oldFilePath, String newFilePath) throws Exception {
+        ExifInterface oldExif=new ExifInterface(oldFilePath);
+        ExifInterface newExif=new ExifInterface(newFilePath);
+        Class<ExifInterface> cls = ExifInterface.class;
+        Field[] fields = cls.getFields();
+        for (int i = 0; i < fields.length; i++) {
+            String fieldName = fields[i].getName();
+            if (!TextUtils.isEmpty(fieldName) && fieldName.startsWith("TAG")) {
+                String fieldValue = fields[i].get(cls).toString();
+                String attribute = oldExif.getAttribute(fieldValue);
+                if (attribute != null) {
+                    newExif.setAttribute(fieldValue, attribute);
+                }
+            }
+        }
+        newExif.saveAttributes();
+    }
+
     private Bitmap getBitmap(File file) {
         BitmapFactory.Options options = getOptions(file);
+        options.inScaled = false;
         Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
-        bitmap = rotateBitmap(bitmap, file);
+        //不再旋转图片。
+        //bitmap = rotateBitmap(bitmap, file);
         return bitmap;
     }
 
@@ -66,13 +92,16 @@ public class TCompress {
     }
 
     private Bitmap rotateBitmap(Bitmap bitmap, File file) {
+        Bitmap ret;
         int degree = getPictureDegree(file);
         if (degree == 0) {
             return bitmap;
         }
         Matrix matrix = new Matrix();
-        Bitmap ret = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+        ret = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+        //根据图的中心位置旋转
         matrix.setRotate(degree, ret.getWidth() / 2, ret.getHeight() / 2);
+
         Canvas canvas = new Canvas(ret);
         canvas.drawBitmap(bitmap, matrix, null);
         return ret;
@@ -118,6 +147,8 @@ public class TCompress {
     }
 
     private float setRatio(float width, float height) {
+
+        //old
         float ratio = 1;
         if (mMaxWidth < width && mMaxHeight < height) {
             if (mMaxWidth / width < mMaxHeight / height)
@@ -126,6 +157,7 @@ public class TCompress {
         } else if (mMaxWidth < width) ratio = mMaxWidth / width;
         else if (mMaxHeight < height) ratio = mMaxHeight / height;
         return ratio;
+
     }
 
     private File bitmap2File(Bitmap bitmap) {

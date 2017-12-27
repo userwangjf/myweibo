@@ -110,11 +110,11 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
 
         //初始化压缩引擎
         TCompress tCompress = new TCompress.Builder()
-                .setMaxWidth(1080)
-                .setMaxHeight(1080)
+                .setMaxWidth(1280)
+                .setMaxHeight(1280)
                 .setQuality(100)
                 .setFormat(Bitmap.CompressFormat.JPEG)
-                .setConfig(Bitmap.Config.RGB_565)
+                .setConfig(Bitmap.Config.ARGB_8888)
                 .build();
 
         //添加图片信息
