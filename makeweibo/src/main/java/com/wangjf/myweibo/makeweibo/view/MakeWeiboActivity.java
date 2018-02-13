@@ -29,6 +29,7 @@ import com.yongchun.library.view.ImageSelectorActivity;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -140,7 +141,14 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
                     String exif_date = exif.getAttribute(ExifInterface.TAG_DATETIME);
                     //装载数据到bean
                     MakePicBean.PicInfo picInfo = new MakePicBean.PicInfo();
-                    picInfo.setCtime(exif_date);
+                    if(exif_date == null) {
+                        File srcFile = new File(mData.get(i));
+                        srcFile.lastModified();
+                        DateFormat df = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
+                        picInfo.setCtime(df.format(srcFile.lastModified()));
+                    } else {
+                        picInfo.setCtime(exif_date);
+                    }
                     picInfo.setFname(getFileName(mData.get(i)));//先装入文件路径
                     picInfos.add(picInfo);
                 } catch (IOException e) {
