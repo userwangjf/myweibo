@@ -1,4 +1,4 @@
-package io.weimu.www.library;
+package com.wangjf.loginin;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("io.weimu.www.library.test", appContext.getPackageName());
+        assertEquals("com.wangjf.loginin.test", appContext.getPackageName());
     }
 }
