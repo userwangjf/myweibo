@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ImagePicker" />
+            <option value="$PROJECT_DIR$/MVP" />
             <option value="$PROJECT_DIR$/MultImageView" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/circularprogressbar" />

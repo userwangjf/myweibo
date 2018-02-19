@@ -1,4 +1,4 @@
-package com.wangjf.loginin.view;
+package com.wangjf.MVP.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,11 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.wangjf.loginin.R;
-import com.wangjf.loginin.bean.Bean;
-import com.wangjf.loginin.present.PresentImpl;
-import com.wangjf.loginin.present.PresentIntf;
+import com.wangjf.MVP.bean.Bean;
+import com.wangjf.MVP.present.PresentImpl;
+import com.wangjf.MVP.present.PresentIntf;
 
-public class LogininActivity extends AppCompatActivity implements ViewIntf {
+public class MvpActivity extends AppCompatActivity implements ViewIntf {
 
     private PresentIntf mPresentIntf;
 
@@ -25,7 +25,7 @@ public class LogininActivity extends AppCompatActivity implements ViewIntf {
     }
 
     public static Intent newIntent(Context packageContext) {
-        Intent intent = new Intent(packageContext, LogininActivity.class);
+        Intent intent = new Intent(packageContext, MvpActivity.class);
         //可携带参数
         //intent.putExtra("xxx","xxx");
         return intent;
