@@ -44,14 +44,13 @@
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="10dp"
-
                 android:src="@drawable/weibo_tabbar_default_dot"
                 android:contentDescription="null"
                 android:visibility="gone" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/tv_message"
+            android:id="@+id/weibo_bottombar_message"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -141,7 +140,7 @@
 
 
         <RelativeLayout
-            android:id="@+id/weibo_bottombar_profile_layout"
+            android:id="@+id/tv_profile"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -150,7 +149,7 @@
 
 
             <TextView
-                android:id="@+id/weibo_bottombar_profile_text"
+                android:id="@+id/profile_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -164,6 +163,9 @@
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="10dp"
+                android:layout_alignEnd="@+id/profile_layout"
+                android:layout_alignRight="@+id/profile_layout"
+                android:layout_alignTop="@+id/profile_layout"
                 android:src="@drawable/weibo_tabbar_default_dot"
                 android:contentDescription="null"
                 android:visibility="gone" />

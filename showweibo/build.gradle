@@ -43,4 +43,5 @@ dependencies {
     compile project(':photoview')
     compile project(':makeweibo')
     compile project(':circularprogressbar')
+    compile project(':myconfig')
 }

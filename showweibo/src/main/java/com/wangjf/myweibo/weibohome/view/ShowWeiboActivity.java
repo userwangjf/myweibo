@@ -25,6 +25,7 @@ import com.dengzq.simplerefreshlayout.SimpleRefreshLayout;
 import com.dengzq.simplerefreshlayout.SimpleRefreshView;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import com.wangjf.MultImageView.MultImageView;
+import com.wangjf.myconfig.myconfigActivity;
 import com.wangjf.myweibo.config.UrlCfg;
 import com.wangjf.myweibo.makeweibo.view.MakeWeiboActivity;
 import com.wangjf.myweibo.weibohome.R;
@@ -73,15 +74,26 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
 
-        //底部按钮
+        //Home按钮
         mBarHome = (RelativeLayout) findViewById(R.id.weibo_bottombar_home);
         mBarHome.setSelected(true);
+
         //新建微搏按钮
         mBarMakeWeibo = (ImageView) findViewById(R.id.id_bar_make_weibo);
         mBarMakeWeibo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = MakeWeiboActivity.newIntent(ShowWeiboActivity.this);
+                startActivity(intent);
+            }
+        });
+
+        //myConfig按钮
+        mBarProfile = (RelativeLayout)findViewById(R.id.weibo_bottombar_profile_layout);
+        mBarProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = myconfigActivity.newIntent(ShowWeiboActivity.this);
                 startActivity(intent);
             }
         });

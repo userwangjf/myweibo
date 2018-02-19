@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 底部快捷按钮 -->
+    <color name="home_bottombar_bg">#FFFFFF</color><!--底部bar的背景样式-->
+    <color name="home_bottombar_font">#929292</color><!--底部bar字体颜色-->
+    <color name="weibo_bottombar_top_line">#eaeaea</color><!--顶部分割线的颜色-->
+
+
+    <!--按钮栏-白天 -->
+    <color name="rl_normal_bg">#FFFFFF</color><!--状态栏的的背景颜色-->
+    <color name="rl_highlight_bg">#f2f2f2</color><!--状态栏的的背景颜色-->
+    <color name="rl_textcolor">#111111</color>
+
+</resources>
+

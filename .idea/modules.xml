@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/gson/gson.iml" filepath="$PROJECT_DIR$/gson/gson.iml" />
       <module fileurl="file://$PROJECT_DIR$/loginin/loginin.iml" filepath="$PROJECT_DIR$/loginin/loginin.iml" />
       <module fileurl="file://$PROJECT_DIR$/makeweibo/makeweibo.iml" filepath="$PROJECT_DIR$/makeweibo/makeweibo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myconfig/myconfig.iml" filepath="$PROJECT_DIR$/myconfig/myconfig.iml" />
       <module fileurl="file://$PROJECT_DIR$/myimageview/myimageview.iml" filepath="$PROJECT_DIR$/myimageview/myimageview.iml" />
       <module fileurl="file://$PROJECT_DIR$/myutils/myutils.iml" filepath="$PROJECT_DIR$/myutils/myutils.iml" />
       <module fileurl="file://$PROJECT_DIR$/myweibo.iml" filepath="$PROJECT_DIR$/myweibo.iml" />

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.wangjf.loginin">
+          package="com.wangjf.myconfig">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,7 @@
         <activity
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:name=".view.LogininActivity">
+            android:name=".myconfigActivity">
         </activity>
     </application>
 
