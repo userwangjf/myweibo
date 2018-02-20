@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.wangjf.myweibo.config.ParamConfig;
 import com.wangjf.myweibo.makeweibo.view.MakeWeiboActivity;
 import com.wangjf.myweibo.weibohome.view.ShowWeiboActivity;
 
@@ -29,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
+        //初始化配置参数
+        ParamConfig.get(this);
 
         mStartIntent = new Intent(LoginActivity.this, ShowWeiboActivity.class);
 

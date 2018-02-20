@@ -24,8 +24,8 @@ import com.dengzq.simplerefreshlayout.SimpleLoadView;
 import com.dengzq.simplerefreshlayout.SimpleRefreshLayout;
 import com.dengzq.simplerefreshlayout.SimpleRefreshView;
 import com.wangjf.MultImageView.MultImageView;
-import com.wangjf.myconfig.myconfigSetting;
-import com.wangjf.myweibo.config.UrlCfg;
+import com.wangjf.myconfig.AppSetting;
+import com.wangjf.myweibo.config.ParamConfig;
 import com.wangjf.myweibo.makeweibo.view.MakeWeiboActivity;
 import com.wangjf.myweibo.weibohome.R;
 import com.wangjf.myweibo.weibohome.bean.ShowWeiboBean;
@@ -92,7 +92,7 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
         mBarProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = myconfigSetting.newIntent(ShowWeiboActivity.this);
+                Intent intent = AppSetting.newIntent(ShowWeiboActivity.this);
                 startActivity(intent);
             }
         });
@@ -163,7 +163,7 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
                     List<String> imgs = new ArrayList<>();
                     //添加数据
                     for(int i=0;i<mData.get(position).getPic().size();i++){
-                        String UrlPic = UrlCfg.getUrlHost() + mData.get(position).getPic().get(i).getUrl();
+                        String UrlPic = ParamConfig.getUrlHost() + mData.get(position).getPic().get(i).getUrl();
                         Log.i("WJF",UrlPic);
                         imgs.add(UrlPic);
                     }

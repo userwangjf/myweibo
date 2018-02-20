@@ -219,7 +219,7 @@
         <TextView
             android:id="@+id/myconfig_tv_server"
             android:layout_width="wrap_content"
-            android:text="192.168.1.100"
+            android:text="http://192.168.1.100/myweibo"
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -227,7 +227,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/settingRl"
+        android:id="@+id/myconfig_list_setting"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="0.5dp"

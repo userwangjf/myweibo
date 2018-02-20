@@ -29,7 +29,8 @@ dependencies {
     compile "com.android.support:appcompat-v7:$supportLibVersion"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile project(':loginin')
     compile project(':editdialog')
     compile project(':myutils')
+    compile project(':promptdialog')
+    compile project(':loginin')
 }

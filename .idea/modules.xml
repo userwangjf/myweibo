@@ -6,19 +6,20 @@
       <module fileurl="file://$PROJECT_DIR$/MVP/MVP.iml" filepath="$PROJECT_DIR$/MVP/MVP.iml" />
       <module fileurl="file://$PROJECT_DIR$/MultImageView/MultImageView.iml" filepath="$PROJECT_DIR$/MultImageView/MultImageView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/appsetting/appsetting.iml" filepath="$PROJECT_DIR$/appsetting/appsetting.iml" />
       <module fileurl="file://$PROJECT_DIR$/circularprogressbar/circularprogressbar.iml" filepath="$PROJECT_DIR$/circularprogressbar/circularprogressbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/config/config.iml" filepath="$PROJECT_DIR$/config/config.iml" />
       <module fileurl="file://$PROJECT_DIR$/editdialog/editdialog.iml" filepath="$PROJECT_DIR$/editdialog/editdialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/gson/gson.iml" filepath="$PROJECT_DIR$/gson/gson.iml" />
       <module fileurl="file://$PROJECT_DIR$/loginin/loginin.iml" filepath="$PROJECT_DIR$/loginin/loginin.iml" />
       <module fileurl="file://$PROJECT_DIR$/makeweibo/makeweibo.iml" filepath="$PROJECT_DIR$/makeweibo/makeweibo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/myconfig/myconfig.iml" filepath="$PROJECT_DIR$/myconfig/myconfig.iml" />
       <module fileurl="file://$PROJECT_DIR$/myimageview/myimageview.iml" filepath="$PROJECT_DIR$/myimageview/myimageview.iml" />
       <module fileurl="file://$PROJECT_DIR$/myutils/myutils.iml" filepath="$PROJECT_DIR$/myutils/myutils.iml" />
       <module fileurl="file://$PROJECT_DIR$/myweibo.iml" filepath="$PROJECT_DIR$/myweibo.iml" />
       <module fileurl="file://$PROJECT_DIR$/okhttputils/okhttputils.iml" filepath="$PROJECT_DIR$/okhttputils/okhttputils.iml" />
       <module fileurl="file://$PROJECT_DIR$/photoview/photoview.iml" filepath="$PROJECT_DIR$/photoview/photoview.iml" />
       <module fileurl="file://$PROJECT_DIR$/progressbar/progressbar.iml" filepath="$PROJECT_DIR$/progressbar/progressbar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/promptdialog/promptdialog.iml" filepath="$PROJECT_DIR$/promptdialog/promptdialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/showweibo/showweibo.iml" filepath="$PROJECT_DIR$/showweibo/showweibo.iml" />
       <module fileurl="file://$PROJECT_DIR$/simplerefreshlayout/simplerefreshlayout.iml" filepath="$PROJECT_DIR$/simplerefreshlayout/simplerefreshlayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/swipeback/swipeback.iml" filepath="$PROJECT_DIR$/swipeback/swipeback.iml" />

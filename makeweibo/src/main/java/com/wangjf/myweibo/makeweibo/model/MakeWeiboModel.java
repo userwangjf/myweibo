@@ -4,10 +4,8 @@ package com.wangjf.myweibo.makeweibo.model;
 import android.util.Log;
 
 import com.guozheng.urlhttputils.urlhttp.CallBackUtil;
-import com.guozheng.urlhttputils.urlhttp.RealResponse;
 import com.guozheng.urlhttputils.urlhttp.UrlHttpUtil;
-import com.wangjf.myweibo.config.UrlCfg;
-import com.wangjf.myweibo.makeweibo.bean.MakeWeiboBean;
+import com.wangjf.myweibo.config.ParamConfig;
 
 import java.io.File;
 import java.util.HashMap;
@@ -24,7 +22,7 @@ public class MakeWeiboModel implements MakeWeiboModelIntf {
     @Override
     public void addWeibo(String weiboJson, String picJson, List<File> picfs, final OnUploadWeiboListener listener) {
 
-        String UrlMakeWeibo = String.format("%s/%s", UrlCfg.getUrlHost(),
+        String UrlMakeWeibo = String.format("%s/%s", ParamConfig.getUrlHost(),
                 "?service=weibo.makeweibo");
         Log.i("WJF","makeWeibo: " + UrlMakeWeibo);
 

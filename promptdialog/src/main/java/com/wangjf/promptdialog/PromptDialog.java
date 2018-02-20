@@ -1,4 +1,4 @@
-package com.wangjf.editdialog;
+package com.wangjf.promptdialog;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -6,10 +6,10 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
 
 
 /**
@@ -18,39 +18,39 @@ import android.widget.LinearLayout.LayoutParams;
  * @time: 2015-10-12 下午3:06:52 
  * @fun:
  */
-public class EditDialog extends Dialog implements View.OnClickListener {
+public class PromptDialog extends Dialog implements View.OnClickListener {
 
 	private View mView;
 	private Context mContext;
 
 	private LinearLayout mBgLl;
 	//private TextView mTitleTv;
-	private EditText mMsgEt;
+	private TextView mMsgEt;
 	private Button mNegBtn;
 	private Button mPosBtn;
 
-	public EditDialog(Context context) {
+	public PromptDialog(Context context) {
 		this(context, 0, null, "");
 	}
 
-	//默认显示data
-	public EditDialog(Context context, String data) {
-		this(context, 0, null, data);
+	//默认显示msg
+	public PromptDialog(Context context, String msg) {
+		this(context, 0, null, msg);
 	}
 
-	public EditDialog(Context context, int theme, View contentView, String data) {
+	public PromptDialog(Context context, int theme, View contentView, String msg) {
 		super(context, theme == 0 ? R.style.MyDialogStyle : theme);
 
 		this.mView = contentView;
 		this.mContext = context;
 
 		if (mView == null) {
-			mView = View.inflate(mContext, R.layout.layout_editdialog, null);
+			mView = View.inflate(mContext, R.layout.layout_promptdialog, null);
 		}
 
 		init();
 		initView();
-		initData(data);
+		initData(msg);
 		initListener();
 
 	}
@@ -62,7 +62,7 @@ public class EditDialog extends Dialog implements View.OnClickListener {
 	private void initView() {
 		mBgLl = (LinearLayout) mView.findViewById(R.id.lLayout_bg);
 		//mTitleTv = (TextView) mView.findViewById(R.id.txt_title);
-		mMsgEt = (EditText) mView.findViewById(R.id.et_msg);
+		mMsgEt = (TextView) mView.findViewById(R.id.et_msg);
 		mNegBtn = (Button) mView.findViewById(R.id.btn_neg);
 		mPosBtn = (Button) mView.findViewById(R.id.btn_pos);
 	}

@@ -9,7 +9,7 @@
         <activity
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:name=".myconfigSetting">
+            android:name=".AppSetting">
         </activity>
     </application>
 

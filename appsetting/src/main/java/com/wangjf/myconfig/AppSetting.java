@@ -10,14 +10,17 @@ import android.widget.TextView;
 
 import com.wangjf.editdialog.EditDialog;
 import com.wangjf.loginin.view.LogininActivity;
+import com.wangjf.myutils.SharedPreferencesUtils;
+import com.wangjf.myweibo.config.ParamConfig;
+import com.wangjf.promptdialog.PromptDialog;
 
-public class myconfigSetting extends AppCompatActivity {
+public class AppSetting extends AppCompatActivity {
 
 
-    private RelativeLayout mListLoginin;
-
-    private RelativeLayout mListServerAddr;
-    private TextView      mTvServerAddr;
+    private static RelativeLayout   mListLoginin;
+    private static RelativeLayout   mListServerAddr;
+    private static TextView         mTvServerAddr;
+    private static RelativeLayout   mListSetting;
 
 
     @Override
@@ -30,26 +33,47 @@ public class myconfigSetting extends AppCompatActivity {
         mListLoginin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = LogininActivity.newIntent(myconfigSetting.this);
+                Intent intent = LogininActivity.newIntent(AppSetting.this);
                 startActivity(intent);
             }
         });
 
         //显示服务器地址
         mTvServerAddr = (TextView)findViewById(R.id.myconfig_tv_server);
-
+        mTvServerAddr.setText(ParamConfig.getUrlHost());
 
         //服务器设置
         mListServerAddr = (RelativeLayout)findViewById(R.id.mysetting_server_addr);
         mListServerAddr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditDialog editDialog = new EditDialog(myconfigSetting.this, mTvServerAddr.getText().toString());
+                EditDialog editDialog = new EditDialog(AppSetting.this, mTvServerAddr.getText().toString());
                 editDialog.show();
                 editDialog.setOnPosNegClickListener(new EditDialog.OnPosNegClickListener() {
                     @Override
                     public void posClickListener(String value) {
                         mTvServerAddr.setText(value);
+                        ParamConfig.setUrlHost(value);
+                    }
+
+                    @Override
+                    public void negCliclListener(String value) {
+
+                    }
+                });
+            }
+        });
+
+
+        mListSetting = (RelativeLayout)findViewById(R.id.myconfig_list_setting);
+        mListSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PromptDialog promptDialog = new PromptDialog(AppSetting.this, "开发中");
+                promptDialog.show();
+                promptDialog.setOnPosNegClickListener(new PromptDialog.OnPosNegClickListener() {
+                    @Override
+                    public void posClickListener(String value) {
 
                     }
 
@@ -63,12 +87,15 @@ public class myconfigSetting extends AppCompatActivity {
 
 
 
-
-
     }
 
+    public static String getServerAddr() {
+        return mTvServerAddr.getText().toString();
+    }
+
+
     public static Intent newIntent(Context packageContext) {
-        Intent intent = new Intent(packageContext, myconfigSetting.class);
+        Intent intent = new Intent(packageContext, AppSetting.class);
         //可携带参数
         //intent.putExtra("xxx","xxx");
         return intent;
