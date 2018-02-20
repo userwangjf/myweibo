@@ -4,7 +4,7 @@ package com.wangjf.loginin.bean;
  * Created by wangjf on 17-11-23.
  */
 
-public class Bean {
+public class BaseBean {
 
     private int ret;
     private String msg;

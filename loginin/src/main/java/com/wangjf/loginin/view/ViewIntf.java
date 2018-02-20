@@ -1,6 +1,6 @@
 package com.wangjf.loginin.view;
 
-import com.wangjf.loginin.bean.Bean;
+import com.wangjf.loginin.bean.BaseBean;
 
 
 /**
@@ -10,7 +10,7 @@ import com.wangjf.loginin.bean.Bean;
 public interface ViewIntf {
 
     //更新UI
-    void UpdateUI(Bean bean);
+    void UpdateUI(BaseBean bean);
 
     //显示等待标记
     void showProgress(String msg);

@@ -21,7 +21,7 @@ public class AppSetting extends AppCompatActivity {
     private static RelativeLayout   mListServerAddr;
     private static TextView         mTvServerAddr;
     private static RelativeLayout   mListSetting;
-
+    private static TextView         mLoginText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,10 @@ public class AppSetting extends AppCompatActivity {
 
         //登录
         mListLoginin = (RelativeLayout)findViewById(R.id.myconfig_list_loginin);
+        mLoginText = (TextView)findViewById(R.id.loginin_loginin_text);
+        if(ParamConfig.getTokenid() != null) {
+            mLoginText.setText(ParamConfig.getTokenid());
+        }
         mListLoginin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

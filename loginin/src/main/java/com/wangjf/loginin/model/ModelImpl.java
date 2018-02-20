@@ -13,14 +13,12 @@ import java.util.Map;
 public class ModelImpl implements ModelIntf {
 
 
-
-
     @Override
     public void LoadBean(final OnModelListener listener, Map<String, String> params) {
 
-        String url = ParamConfig.getUrlHost();
+        String urlLogin = ParamConfig.getUrlHost() + "?service=LoginIn.LoginIn";
 
-        UrlHttpUtil.post(url, params, new CallBackUtil.CallBackString() {
+        UrlHttpUtil.post(urlLogin, params, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(int code, String errorMessage) {
                 listener.onFailure(errorMessage);

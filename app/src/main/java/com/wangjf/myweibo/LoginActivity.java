@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.wangjf.myutils.SnackbarUtils;
 import com.wangjf.myweibo.config.ParamConfig;
 import com.wangjf.myweibo.makeweibo.view.MakeWeiboActivity;
 import com.wangjf.myweibo.weibohome.view.ShowWeiboActivity;
