@@ -167,7 +167,7 @@
         android:src="@drawable/touxiang" />
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/loginin_submit"
         android:layout_width="160dp"
         android:layout_height="40dp"
         android:layout_alignLeft="@+id/relativeLayout2"
@@ -184,7 +184,7 @@
         android:id="@+id/relativeLayoutaotu"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_below="@+id/loginButton"
+        android:layout_below="@+id/loginin_submit"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:padding="1dp" >

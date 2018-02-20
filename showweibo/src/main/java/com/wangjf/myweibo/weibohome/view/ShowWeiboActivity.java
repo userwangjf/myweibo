@@ -23,9 +23,8 @@ import com.dengzq.simplerefreshlayout.SimpleBottomView;
 import com.dengzq.simplerefreshlayout.SimpleLoadView;
 import com.dengzq.simplerefreshlayout.SimpleRefreshLayout;
 import com.dengzq.simplerefreshlayout.SimpleRefreshView;
-import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import com.wangjf.MultImageView.MultImageView;
-import com.wangjf.myconfig.myconfigActivity;
+import com.wangjf.myconfig.myconfigSetting;
 import com.wangjf.myweibo.config.UrlCfg;
 import com.wangjf.myweibo.makeweibo.view.MakeWeiboActivity;
 import com.wangjf.myweibo.weibohome.R;
@@ -93,7 +92,7 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
         mBarProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = myconfigActivity.newIntent(ShowWeiboActivity.this);
+                Intent intent = myconfigSetting.newIntent(ShowWeiboActivity.this);
                 startActivity(intent);
             }
         });

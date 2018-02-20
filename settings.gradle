@@ -1,4 +1,4 @@
-include ':app', ':showweibo', ':myutils', ':config', ':makeweibo', ':myimageview', ':progressbar', ':loginin', ':myconfig'
+include ':app', ':showweibo', ':myutils', ':config', ':makeweibo', ':myimageview', ':progressbar', ':loginin', ':myconfig', ':editdialog'
 include ':swipeback'
 include ':toasty'
 include ':simplerefreshlayout'
