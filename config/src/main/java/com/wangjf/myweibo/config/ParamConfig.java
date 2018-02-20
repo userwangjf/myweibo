@@ -27,9 +27,9 @@ public class ParamConfig {
     public static void LoadParam() {
         if(mContext != null) {
             String ret = SharedPreferencesUtils.init(mContext).getString("mUrlHost",null);
-            if(ret != null) setUrlHost(ret);
+            if(ret != null) mUrlHost = ret;
             ret = SharedPreferencesUtils.init(mContext).getString("mTokenid",null);
-            if(ret != null) setTokenid(ret);
+            if(ret != null) mTokenid = ret;
         }
     }
 

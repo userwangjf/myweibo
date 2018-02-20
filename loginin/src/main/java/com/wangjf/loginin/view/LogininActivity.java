@@ -23,6 +23,8 @@ import java.util.TimerTask;
 
 public class LogininActivity extends AppCompatActivity implements ViewIntf {
 
+    final static int CODE_LOGININ   = 0x1000;
+
     private PresentIntf mPresentIntf;
 
     private View mSnackBarView;
@@ -86,6 +88,7 @@ public class LogininActivity extends AppCompatActivity implements ViewIntf {
     @Override
     public void showOkMsg(String msg) {
         SnackbarUtils.with(mSnackBarView).setMessage(msg).show();
+
         //登录成功，自动退出
         new Timer().schedule(new TimerTask() {
             @Override
@@ -103,6 +106,10 @@ public class LogininActivity extends AppCompatActivity implements ViewIntf {
     public Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+            Log.i("WJF","LoginIn 成功");
+            Intent intentRet = new Intent();
+            intentRet.putExtra("loginin_state",true);
+            setResult(CODE_LOGININ,intentRet);
             finish();
         }
     };

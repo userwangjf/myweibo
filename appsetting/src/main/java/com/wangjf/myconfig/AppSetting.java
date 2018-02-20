@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,6 +24,9 @@ public class AppSetting extends AppCompatActivity {
     private static RelativeLayout   mListSetting;
     private static TextView         mLoginText;
 
+    final static int CODE_LOGININ   = 0x1000;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,13 +36,13 @@ public class AppSetting extends AppCompatActivity {
         mListLoginin = (RelativeLayout)findViewById(R.id.myconfig_list_loginin);
         mLoginText = (TextView)findViewById(R.id.loginin_loginin_text);
         if(ParamConfig.getTokenid() != null) {
-            mLoginText.setText(ParamConfig.getTokenid());
+            mLoginText.setText("已登录");
         }
         mListLoginin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = LogininActivity.newIntent(AppSetting.this);
-                startActivity(intent);
+                startActivityForResult(intent, CODE_LOGININ);
             }
         });
 
@@ -89,6 +93,26 @@ public class AppSetting extends AppCompatActivity {
             }
         });
 
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.i("WJF","AppSetting onActivityResult," + requestCode + "," + resultCode);
+
+        if(RESULT_CANCELED == resultCode) {
+            return ;
+        }
+
+        if(requestCode == CODE_LOGININ) {
+            boolean loginin_state = data.getBooleanExtra("loginin_state",false);
+            if(loginin_state) {
+                mLoginText.setText("登录成功");
+            }
+        }
 
 
     }
