@@ -33,4 +33,5 @@ dependencies {
     compile project(':urlhttputils')
     compile project(':config')
     compile project(':gson')
+    compile project(':topsnackbar')
 }

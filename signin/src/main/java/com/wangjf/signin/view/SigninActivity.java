@@ -2,8 +2,6 @@ package com.wangjf.signin.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,12 +14,10 @@ import com.wangjf.signin.R;
 import com.wangjf.signin.bean.SigninBean;
 import com.wangjf.signin.present.PresentImpl;
 import com.wangjf.signin.present.PresentIntf;
-import com.wangjf.myutils.SnackbarUtils;
+import com.androidadvance.topsnackbar.SnackbarUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class SigninActivity extends AppCompatActivity implements ViewIntf {
 

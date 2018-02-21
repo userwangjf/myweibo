@@ -1,4 +1,4 @@
-package com.wangjf.myutils;
+package com.androidadvance.topsnackbar;
 
 /*
 with           : 设置 snackbar 依赖 view

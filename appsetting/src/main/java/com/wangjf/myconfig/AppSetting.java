@@ -9,13 +9,11 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.androidadvance.topsnackbar.TSnackbar;
+import com.androidadvance.topsnackbar.TSnackbarUtils;
 import com.wangjf.editdialog.EditDialog;
 import com.wangjf.loginin.view.LogininActivity;
-import com.wangjf.myutils.SharedPreferencesUtils;
-import com.wangjf.myutils.SnackbarUtils;
+import com.androidadvance.topsnackbar.SnackbarUtils;
 import com.wangjf.myweibo.config.ParamConfig;
-import com.wangjf.promptdialog.PromptDialog;
 import com.wangjf.signin.view.SigninActivity;
 
 public class AppSetting extends AppCompatActivity {
@@ -105,8 +103,8 @@ public class AppSetting extends AppCompatActivity {
         mListSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //SnackbarUtils.with(mSnackBarView).setMessage("开发中").show();
-                TSnackbar.make(mSnackBarView,"开发中",TSnackbar.LENGTH_SHORT).show();
+                TSnackbarUtils.with(mSnackBarView).setMessage("开发中").showSuccess();
+
             }
         });
 

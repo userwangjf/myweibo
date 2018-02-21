@@ -15,7 +15,7 @@ import com.wangjf.loginin.R;
 import com.wangjf.loginin.bean.BaseBean;
 import com.wangjf.loginin.present.PresentImpl;
 import com.wangjf.loginin.present.PresentIntf;
-import com.wangjf.myutils.SnackbarUtils;
+import com.androidadvance.topsnackbar.SnackbarUtils;
 
 import java.util.HashMap;
 import java.util.Map;
