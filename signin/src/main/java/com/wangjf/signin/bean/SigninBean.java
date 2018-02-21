@@ -1,14 +1,14 @@
-package com.wangjf.loginin.bean;
+package com.wangjf.signin.bean;
 
 /**
  * Created by wangjf on 18-2-20.
  */
 
-public class LogininBean {
+public class SigninBean {
 
     /**
      * ret : 200
-     * data : {"admin":0,"tokenid":"5ccb980c4e0bec6b6f96ee7914e36e84"}
+     * data : {"value":"191359"}
      * msg :
      */
 
@@ -42,27 +42,17 @@ public class LogininBean {
 
     public static class DataBean {
         /**
-         * admin : 0
-         * tokenid : 5ccb980c4e0bec6b6f96ee7914e36e84
+         * value : 191359
          */
 
-        private int admin;
-        private String tokenid;
+        private String value;
 
-        public int getAdmin() {
-            return admin;
+        public String getValue() {
+            return value;
         }
 
-        public void setAdmin(int admin) {
-            this.admin = admin;
-        }
-
-        public String getTokenid() {
-            return tokenid;
-        }
-
-        public void setTokenid(String tokenid) {
-            this.tokenid = tokenid;
+        public void setValue(String value) {
+            this.value = value;
         }
     }
 }

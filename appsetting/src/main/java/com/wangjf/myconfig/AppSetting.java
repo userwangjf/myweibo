@@ -14,6 +14,7 @@ import com.wangjf.loginin.view.LogininActivity;
 import com.wangjf.myutils.SharedPreferencesUtils;
 import com.wangjf.myweibo.config.ParamConfig;
 import com.wangjf.promptdialog.PromptDialog;
+import com.wangjf.signin.view.SigninActivity;
 
 public class AppSetting extends AppCompatActivity {
 
@@ -23,6 +24,7 @@ public class AppSetting extends AppCompatActivity {
     private static TextView         mTvServerAddr;
     private static RelativeLayout   mListSetting;
     private static TextView         mLoginText;
+    private static RelativeLayout   mListSignin;
 
     final static int CODE_LOGININ   = 0x1000;
 
@@ -31,6 +33,16 @@ public class AppSetting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_myconfig_activity);
+
+        //注册
+        mListSignin = (RelativeLayout)findViewById(R.id.myconfig_list_signin);
+        mListSignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = SigninActivity.newIntent(AppSetting.this);
+                startActivity(intent);
+            }
+        });
 
         //登录
         mListLoginin = (RelativeLayout)findViewById(R.id.myconfig_list_loginin);
@@ -101,7 +113,7 @@ public class AppSetting extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.i("WJF","AppSetting onActivityResult," + requestCode + "," + resultCode);
+        Log.i("WJF","AppSetting::onActivityResult," + requestCode + "," + resultCode);
 
         if(RESULT_CANCELED == resultCode) {
             return ;

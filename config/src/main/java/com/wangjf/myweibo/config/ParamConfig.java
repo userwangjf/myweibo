@@ -13,7 +13,10 @@ public class ParamConfig {
     private static Context mContext;
     private static ParamConfig mParamConfig;
     private static String mUrlHost = "http://192.168.1.100/myweibo/";
-    private static String mTokenid;
+    private static String mTokenid = "";
+    private static boolean mAdminLogin = false;
+
+
 
     public static ParamConfig get(Context ctx) {
         if(mContext == null) {
@@ -30,6 +33,7 @@ public class ParamConfig {
             if(ret != null) mUrlHost = ret;
             ret = SharedPreferencesUtils.init(mContext).getString("mTokenid",null);
             if(ret != null) mTokenid = ret;
+            mAdminLogin = SharedPreferencesUtils.init(mContext).getBoolean("mAdminLogin",false);
         }
     }
 
@@ -37,6 +41,7 @@ public class ParamConfig {
         if(mContext != null) {
             SharedPreferencesUtils.init(mContext).putString("mUrlHost",mUrlHost);
             SharedPreferencesUtils.init(mContext).putString("mTokenid",mTokenid);
+            SharedPreferencesUtils.init(mContext).putBoolean("mAdminLogin",mAdminLogin);
         }
     }
 
@@ -56,6 +61,16 @@ public class ParamConfig {
 
     public static String getTokenid() {
         return mTokenid;
+    }
+
+
+    public static boolean ismAdminLogin() {
+        return mAdminLogin;
+    }
+
+    public static void setmAdminLogin(boolean mAdminLogin) {
+        ParamConfig.mAdminLogin = mAdminLogin;
+        SaveParam();
     }
 
     private ParamConfig() {

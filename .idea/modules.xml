@@ -21,6 +21,7 @@
       <module fileurl="file://$PROJECT_DIR$/progressbar/progressbar.iml" filepath="$PROJECT_DIR$/progressbar/progressbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/promptdialog/promptdialog.iml" filepath="$PROJECT_DIR$/promptdialog/promptdialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/showweibo/showweibo.iml" filepath="$PROJECT_DIR$/showweibo/showweibo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/signin/signin.iml" filepath="$PROJECT_DIR$/signin/signin.iml" />
       <module fileurl="file://$PROJECT_DIR$/simplerefreshlayout/simplerefreshlayout.iml" filepath="$PROJECT_DIR$/simplerefreshlayout/simplerefreshlayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/swipeback/swipeback.iml" filepath="$PROJECT_DIR$/swipeback/swipeback.iml" />
       <module fileurl="file://$PROJECT_DIR$/tcompress/tcompress.iml" filepath="$PROJECT_DIR$/tcompress/tcompress.iml" />

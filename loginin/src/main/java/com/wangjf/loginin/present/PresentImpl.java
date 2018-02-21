@@ -35,7 +35,15 @@ public class PresentImpl implements PresentIntf,OnModelListener {
             LogininBean logininBean = gson.fromJson(json,LogininBean.class);
             String tokenid = logininBean.getData().getTokenid();
             ParamConfig.setTokenid(tokenid);
-            mViewIntf.showOkMsg("登录成功: " + tokenid);
+            //管理员
+            if(logininBean.getData().getAdmin() > 0) {
+                ParamConfig.setmAdminLogin(true);
+                mViewIntf.showOkMsg("管理员登录成功: " + tokenid);
+            } else {
+                ParamConfig.setmAdminLogin(false);
+                mViewIntf.showOkMsg("登录成功: " + tokenid);
+            }
+
         } else if(bean.getRet() == 220) {
             mViewIntf.showFailMsg("登录失败：" + bean.getMsg());
         }

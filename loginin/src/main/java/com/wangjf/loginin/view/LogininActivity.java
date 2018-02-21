@@ -18,6 +18,7 @@ import com.wangjf.loginin.present.PresentIntf;
 import com.wangjf.myutils.SnackbarUtils;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -27,7 +28,7 @@ public class LogininActivity extends AppCompatActivity implements ViewIntf {
 
     private PresentIntf mPresentIntf;
 
-    private View mSnackBarView;
+    private View        mSnackBarView;
     private EditText mEditAccount;
     private EditText mEditPasswd;
     private Button   mLogininSubmit;
@@ -35,7 +36,7 @@ public class LogininActivity extends AppCompatActivity implements ViewIntf {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_loginin);
+        setContentView(R.layout.layout_loginin);
 
         //加载Present
         mPresentIntf = new PresentImpl(this);
@@ -50,13 +51,18 @@ public class LogininActivity extends AppCompatActivity implements ViewIntf {
         mLogininSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HashMap<String,String> params = new HashMap<String, String>();
+
                 String mUserAccount = mEditAccount.getText().toString();
                 String mUserPasswd = mEditPasswd.getText().toString();
-                Log.i("WJF","LoginIn: " + mUserAccount);
-                params.put("account",mUserAccount);
-                params.put("passwd",mUserPasswd);
-                mPresentIntf.LoadBean(params);
+                if(mUserAccount.isEmpty() || mUserPasswd.isEmpty()) {
+                    SnackbarUtils.with(mSnackBarView).setMessage("帐号/密码不能为空").show();
+                } else {
+                    Map<String, String> params = new HashMap<>();
+                    Log.i("WJF", "LogininActivity::LoginSubmit," + mUserAccount);
+                    params.put("account", mUserAccount);
+                    params.put("passwd", mUserPasswd);
+                    mPresentIntf.LoadBean(params);
+                }
             }
         });
 
@@ -109,7 +115,7 @@ public class LogininActivity extends AppCompatActivity implements ViewIntf {
             Log.i("WJF","LoginIn 成功");
             Intent intentRet = new Intent();
             intentRet.putExtra("loginin_state",true);
-            setResult(CODE_LOGININ,intentRet);
+            setResult(RESULT_OK,intentRet);
             finish();
         }
     };
