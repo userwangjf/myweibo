@@ -167,8 +167,6 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
             picBean.setPicInfos(picInfos);
             picJson = makeGson.toJson(picBean);
         }
-        Log.i("WJF","make weiboJson : " + weiboJson);
-        Log.i("WJF","make picJson : " + picJson);
 
         //发送到服务器
         mPresenter.addWeibo(weiboJson,picJson,picfs);

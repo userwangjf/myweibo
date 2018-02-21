@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.guozheng.urlhttputils.urlhttp.CallBackUtil;
 import com.guozheng.urlhttputils.urlhttp.UrlHttpUtil;
+import com.wangjf.myutils.MyLogUtils;
 import com.wangjf.myweibo.config.ParamConfig;
 
 import java.io.File;
@@ -24,7 +25,7 @@ public class ModelImpl implements ModelIntf {
 
         String UrlMakeWeibo = String.format("%s/%s", ParamConfig.getUrlHost(),
                 "?service=weibo.makeweibo");
-        Log.i("WJF","makeWeibo: " + UrlMakeWeibo);
+        MyLogUtils.d("makeWeibo::ModelImpl: " + UrlMakeWeibo);
 
         Map<String,String> params = new HashMap<>();
         params.put("weibo",weiboJson);

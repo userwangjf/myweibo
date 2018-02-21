@@ -6,6 +6,7 @@ import java.util.List;
  * Created by wangjf on 17-11-27.
  */
 
+//TODO wid没有实现
 public class MakeWeiboBean {
     /**
      * id : 74

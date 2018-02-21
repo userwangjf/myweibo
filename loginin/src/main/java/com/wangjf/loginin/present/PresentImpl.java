@@ -10,6 +10,7 @@ import com.wangjf.loginin.model.ModelImpl;
 import com.wangjf.loginin.model.ModelIntf;
 import com.wangjf.loginin.model.OnModelListener;
 import com.wangjf.loginin.view.ViewIntf;
+import com.wangjf.myutils.MyLogUtils;
 import com.wangjf.myweibo.config.ParamConfig;
 
 import java.util.Map;
@@ -31,10 +32,10 @@ public class PresentImpl implements PresentIntf,OnModelListener {
 
     @Override
     public void onSuccess(String json) {
-        Log.i("WJF","Loginin: " + json);
+        MyLogUtils.d("Loginin: " + json);
         Gson gson = new Gson();
-        BaseBean bean = gson.fromJson(json,BaseBean.class);
-        if(bean.getRet() == 200) {
+        BaseBean base = gson.fromJson(json,BaseBean.class);
+        if(base.getRet() == 200) {
             LogininBean logininBean = gson.fromJson(json,LogininBean.class);
             String tokenid = logininBean.getData().getTokenid();
             ParamConfig.setTokenid(tokenid);
@@ -48,8 +49,8 @@ public class PresentImpl implements PresentIntf,OnModelListener {
                 mViewIntf.showOkMsg("登录成功: " + tokenid);
             }
 
-        } else if(bean.getRet() == 220) {
-            mViewIntf.showFailMsg("登录失败：" + bean.getMsg());
+        } else if(base.getRet() == 220) {
+            mViewIntf.showFailMsg("登录失败：" + base.getMsg());
         }
 
     }

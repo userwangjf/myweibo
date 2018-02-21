@@ -52,7 +52,7 @@ public class AppSetting extends AppCompatActivity {
         //登录
         mListLoginin = (RelativeLayout)findViewById(R.id.myconfig_list_loginin);
         mLoginText = (TextView)findViewById(R.id.loginin_loginin_text);
-        if(!ParamConfig.getTokenid().equals("0")) {
+        if(!ParamConfig.getTokenid().equals("")) {
             mLoginText.setText("已登录");
         }
         mListLoginin.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +68,7 @@ public class AppSetting extends AppCompatActivity {
         mListLoginout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ParamConfig.LoginOut();
                 SnackbarUtils.with(mSnackBarView).setMessage("成功退出").show();
             }
         });

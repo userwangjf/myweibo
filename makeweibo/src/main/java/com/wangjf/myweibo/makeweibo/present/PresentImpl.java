@@ -3,6 +3,7 @@ package com.wangjf.myweibo.makeweibo.present;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.wangjf.myutils.MyLogUtils;
 import com.wangjf.myweibo.makeweibo.bean.BaseBean;
 import com.wangjf.myweibo.makeweibo.model.ModelImpl;
 import com.wangjf.myweibo.makeweibo.model.ModelIntf;
@@ -31,7 +32,7 @@ public class PresentImpl implements PresentIntf,OnModelListener {
     @Override
     public void onSuccess(String json) {
 
-        Log.i("WJF","MakeWeibo: " + json);
+        MyLogUtils.d("MakeWeibo::onSuccess: " + json);
         Gson gson = new Gson();
         BaseBean baseBean = gson.fromJson(json,BaseBean.class);
 
@@ -53,6 +54,8 @@ public class PresentImpl implements PresentIntf,OnModelListener {
 
     @Override
     public void addWeibo(String weiboJson, String picJson, List<File> picfs) {
+        MyLogUtils.d("makeweibo::addWeibo:weiboJson: " + weiboJson);
+        MyLogUtils.d("makeweibo::addWeibo:picJson: " + picJson);
         mWeiboModel.addWeibo(weiboJson,picJson,picfs,this);
     }
 }

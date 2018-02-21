@@ -2,6 +2,7 @@ package com.wangjf.loginin.model;
 
 import com.guozheng.urlhttputils.urlhttp.CallBackUtil;
 import com.guozheng.urlhttputils.urlhttp.UrlHttpUtil;
+import com.wangjf.myutils.MyLogUtils;
 import com.wangjf.myweibo.config.ParamConfig;
 
 import java.util.Map;
@@ -17,6 +18,8 @@ public class ModelImpl implements ModelIntf {
     public void LoadBean(final OnModelListener listener, Map<String, String> params) {
 
         String urlLogin = ParamConfig.getUrlHost() + "?service=LoginIn.LoginIn";
+
+        MyLogUtils.d("Loginin: " + urlLogin);
 
         UrlHttpUtil.post(urlLogin, params, new CallBackUtil.CallBackString() {
             @Override

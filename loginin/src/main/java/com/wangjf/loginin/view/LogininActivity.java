@@ -61,6 +61,7 @@ public class LogininActivity extends AppCompatActivity implements ViewIntf {
                     Log.i("WJF", "LogininActivity::LoginSubmit," + mUserAccount);
                     params.put("account", mUserAccount);
                     params.put("passwd", mUserPasswd);
+                    Log.i("WJF","params: " + params.get("account"));
                     mPresentIntf.LoadBean(params);
                 }
             }

@@ -13,9 +13,9 @@ public class ParamConfig {
 
     //用户参数
     private static String mUrlHost = "http://192.168.1.100/myweibo/";
-    private static String mTokenid = "0";
-    private static String mAdminLogin = "0";
-    private static String mUserId = "0";
+    private static String mTokenid = "";
+    private static String mAdminLogin = "";
+    private static String mUserId = "";
 
     private static Context mContext;
     private static ParamConfig mParamConfig;
@@ -42,9 +42,9 @@ public class ParamConfig {
 
         if(mContext != null) {
             mUrlHost = SharedPreferencesUtils.init(mContext).getString("mUrlHost","http://192.168.1.100/myweibo/");
-            mTokenid = SharedPreferencesUtils.init(mContext).getString("mTokenid","0");
-            mAdminLogin = SharedPreferencesUtils.init(mContext).getString("mAdminLogin","0");
-            mUserId = SharedPreferencesUtils.init(mContext).getString("mUserId","0");
+            mTokenid = SharedPreferencesUtils.init(mContext).getString("mTokenid","");
+            mAdminLogin = SharedPreferencesUtils.init(mContext).getString("mAdminLogin","");
+            mUserId = SharedPreferencesUtils.init(mContext).getString("mUserId","");
         }
     }
 
