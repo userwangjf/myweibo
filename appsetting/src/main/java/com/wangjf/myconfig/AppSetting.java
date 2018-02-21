@@ -9,9 +9,11 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.androidadvance.topsnackbar.TSnackbar;
 import com.wangjf.editdialog.EditDialog;
 import com.wangjf.loginin.view.LogininActivity;
 import com.wangjf.myutils.SharedPreferencesUtils;
+import com.wangjf.myutils.SnackbarUtils;
 import com.wangjf.myweibo.config.ParamConfig;
 import com.wangjf.promptdialog.PromptDialog;
 import com.wangjf.signin.view.SigninActivity;
@@ -25,6 +27,9 @@ public class AppSetting extends AppCompatActivity {
     private static RelativeLayout   mListSetting;
     private static TextView         mLoginText;
     private static RelativeLayout   mListSignin;
+    private static RelativeLayout   mListLoginout;
+
+    private View        mSnackBarView;
 
     final static int CODE_LOGININ   = 0x1000;
 
@@ -33,6 +38,8 @@ public class AppSetting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_myconfig_activity);
+
+        mSnackBarView = findViewById(R.id.myconfig_list_loginout);
 
         //注册
         mListSignin = (RelativeLayout)findViewById(R.id.myconfig_list_signin);
@@ -47,7 +54,7 @@ public class AppSetting extends AppCompatActivity {
         //登录
         mListLoginin = (RelativeLayout)findViewById(R.id.myconfig_list_loginin);
         mLoginText = (TextView)findViewById(R.id.loginin_loginin_text);
-        if(ParamConfig.getTokenid() != null) {
+        if(!ParamConfig.getTokenid().equals("0")) {
             mLoginText.setText("已登录");
         }
         mListLoginin.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +62,15 @@ public class AppSetting extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = LogininActivity.newIntent(AppSetting.this);
                 startActivityForResult(intent, CODE_LOGININ);
+            }
+        });
+
+        //退出
+        mListLoginout = (RelativeLayout)findViewById(R.id.myconfig_list_loginout);
+        mListLoginout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SnackbarUtils.with(mSnackBarView).setMessage("成功退出").show();
             }
         });
 
@@ -89,19 +105,8 @@ public class AppSetting extends AppCompatActivity {
         mListSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PromptDialog promptDialog = new PromptDialog(AppSetting.this, "开发中");
-                promptDialog.show();
-                promptDialog.setOnPosNegClickListener(new PromptDialog.OnPosNegClickListener() {
-                    @Override
-                    public void posClickListener(String value) {
-
-                    }
-
-                    @Override
-                    public void negCliclListener(String value) {
-
-                    }
-                });
+                //SnackbarUtils.with(mSnackBarView).setMessage("开发中").show();
+                TSnackbar.make(mSnackBarView,"开发中",TSnackbar.LENGTH_SHORT).show();
             }
         });
 

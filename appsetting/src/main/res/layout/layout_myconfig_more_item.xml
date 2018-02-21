@@ -80,6 +80,44 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/myconfig_list_loginout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="0.5dp"
+        android:background="@drawable/message_item_auto"
+        android:clickable="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_6" />
+
+        <TextView
+            android:id="@+id/loginin_loginout_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="55dp"
+            android:text="退出"
+            android:textColor="@color/rl_textcolor"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/weibobrowser_goforward_disabled" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/myconfig_line_photo"
         android:layout_width="match_parent"
         android:layout_height="45dp"

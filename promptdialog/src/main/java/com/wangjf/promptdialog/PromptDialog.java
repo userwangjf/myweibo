@@ -1,5 +1,21 @@
 package com.wangjf.promptdialog;
 
+/*
+PromptDialog promptDialog = new PromptDialog(AppSetting.this, "开发中");
+promptDialog.show();
+promptDialog.setOnPosNegClickListener(new PromptDialog.OnPosNegClickListener() {
+    @Override
+    public void posClickListener(String value) {
+
+    }
+
+    @Override
+    public void negCliclListener(String value) {
+
+    }
+});
+ */
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;

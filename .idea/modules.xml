@@ -26,6 +26,7 @@
       <module fileurl="file://$PROJECT_DIR$/swipeback/swipeback.iml" filepath="$PROJECT_DIR$/swipeback/swipeback.iml" />
       <module fileurl="file://$PROJECT_DIR$/tcompress/tcompress.iml" filepath="$PROJECT_DIR$/tcompress/tcompress.iml" />
       <module fileurl="file://$PROJECT_DIR$/toasty/toasty.iml" filepath="$PROJECT_DIR$/toasty/toasty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/topsnackbar/topsnackbar.iml" filepath="$PROJECT_DIR$/topsnackbar/topsnackbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/urlhttputils/urlhttputils.iml" filepath="$PROJECT_DIR$/urlhttputils/urlhttputils.iml" />
     </modules>
   </component>

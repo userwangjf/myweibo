@@ -41,18 +41,16 @@ public class ParamConfig {
     public static void LoadParam() {
 
         if(mContext != null) {
-            String ret = SharedPreferencesUtils.init(mContext).getString("mUrlHost",null);
-            if(ret != null) mUrlHost = ret;
-
-            ret = SharedPreferencesUtils.init(mContext).getString("mTokenid",null);
-            if(ret != null) mTokenid = ret;
-
-            ret = SharedPreferencesUtils.init(mContext).getString("mAdminLogin",null);
-            if(ret != null) mAdminLogin = ret;
-
-            ret = SharedPreferencesUtils.init(mContext).getString("mUserId",null);
-            if(ret != null) mUserId = ret;
+            mUrlHost = SharedPreferencesUtils.init(mContext).getString("mUrlHost","http://192.168.1.100/myweibo/");
+            mTokenid = SharedPreferencesUtils.init(mContext).getString("mTokenid","0");
+            mAdminLogin = SharedPreferencesUtils.init(mContext).getString("mAdminLogin","0");
+            mUserId = SharedPreferencesUtils.init(mContext).getString("mUserId","0");
         }
+    }
+
+    public static void LoginOut() {
+        SharedPreferencesUtils.init(mContext).clear();
+        LoadParam();
     }
 
     public static void SaveParam() {
