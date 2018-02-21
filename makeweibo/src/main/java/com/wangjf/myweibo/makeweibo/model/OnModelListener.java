@@ -4,7 +4,7 @@ package com.wangjf.myweibo.makeweibo.model;
  * Created by wangjf on 17-11-23.
  */
 
-public interface OnUploadWeiboListener {
+public interface OnModelListener {
 
     void onSuccess(String json);
 

@@ -53,7 +53,7 @@ public class SigninActivity extends AppCompatActivity implements ViewIntf {
 
         //邀请码按钮是否显示
         mButtonSignCode = (Button)findViewById(R.id.signin_button_signcode);
-        if(ParamConfig.ismAdminLogin()) {
+        if(ParamConfig.getmAdminLogin().equals("1")) {
             mButtonSignCode.setVisibility(View.VISIBLE);
             mButtonSignCode.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -1,6 +1,7 @@
 package com.wangjf.myweibo.config;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.wangjf.myutils.SharedPreferencesUtils;
 
@@ -10,13 +11,14 @@ import com.wangjf.myutils.SharedPreferencesUtils;
 
 public class ParamConfig {
 
+    //用户参数
+    private static String mUrlHost = "http://192.168.1.100/myweibo/";
+    private static String mTokenid = "0";
+    private static String mAdminLogin = "0";
+    private static String mUserId = "0";
+
     private static Context mContext;
     private static ParamConfig mParamConfig;
-    private static String mUrlHost = "http://192.168.1.100/myweibo/";
-    private static String mTokenid = "";
-    private static boolean mAdminLogin = false;
-
-
 
     public static ParamConfig get(Context ctx) {
         if(mContext == null) {
@@ -27,13 +29,29 @@ public class ParamConfig {
         return mParamConfig;
     }
 
+    public static String getmUserId() {
+        return mUserId;
+    }
+
+    public static void setmUserId(String mUserId) {
+        ParamConfig.mUserId = mUserId;
+        SaveParam();
+    }
+
     public static void LoadParam() {
+
         if(mContext != null) {
             String ret = SharedPreferencesUtils.init(mContext).getString("mUrlHost",null);
             if(ret != null) mUrlHost = ret;
+
             ret = SharedPreferencesUtils.init(mContext).getString("mTokenid",null);
             if(ret != null) mTokenid = ret;
-            mAdminLogin = SharedPreferencesUtils.init(mContext).getBoolean("mAdminLogin",false);
+
+            ret = SharedPreferencesUtils.init(mContext).getString("mAdminLogin",null);
+            if(ret != null) mAdminLogin = ret;
+
+            ret = SharedPreferencesUtils.init(mContext).getString("mUserId",null);
+            if(ret != null) mUserId = ret;
         }
     }
 
@@ -41,7 +59,12 @@ public class ParamConfig {
         if(mContext != null) {
             SharedPreferencesUtils.init(mContext).putString("mUrlHost",mUrlHost);
             SharedPreferencesUtils.init(mContext).putString("mTokenid",mTokenid);
-            SharedPreferencesUtils.init(mContext).putBoolean("mAdminLogin",mAdminLogin);
+            SharedPreferencesUtils.init(mContext).putString("mAdminLogin",mAdminLogin);
+            SharedPreferencesUtils.init(mContext).putString("mUserId",mUserId);
+            Log.i("WJF","SaveParam mUrlHost: " + mUrlHost);
+            Log.i("WJF","SaveParam mTokenid: " + mTokenid);
+            Log.i("WJF","SaveParam mAdminLogin: " + mAdminLogin);
+            Log.i("WJF","SaveParam mUserId: " + mUserId);
         }
     }
 
@@ -63,12 +86,11 @@ public class ParamConfig {
         return mTokenid;
     }
 
-
-    public static boolean ismAdminLogin() {
+    public static String getmAdminLogin() {
         return mAdminLogin;
     }
 
-    public static void setmAdminLogin(boolean mAdminLogin) {
+    public static void setmAdminLogin(String mAdminLogin) {
         ParamConfig.mAdminLogin = mAdminLogin;
         SaveParam();
     }

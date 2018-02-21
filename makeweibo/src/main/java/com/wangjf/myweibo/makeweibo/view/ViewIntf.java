@@ -9,7 +9,7 @@ import java.util.List;
  * Created by wangjf on 17-11-13.
  */
 
-public interface MakeWeiboViewIntf {
+public interface ViewIntf {
 
     void showProgress();
     void hideProgress();

@@ -13,7 +13,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="#0071BC"
-        android:padding="12dp"
+        android:padding="8dp"
         android:textColor="@color/bg_white" >
 
         <TextView

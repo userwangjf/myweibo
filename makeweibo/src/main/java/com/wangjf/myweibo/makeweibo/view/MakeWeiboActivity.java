@@ -3,7 +3,6 @@ package com.wangjf.myweibo.makeweibo.view;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.ExifInterface;
 import android.support.v7.app.AppCompatActivity;
@@ -21,10 +20,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.jkt.tcompress.TCompress;
+import com.wangjf.myweibo.config.ParamConfig;
 import com.wangjf.myweibo.makeweibo.R;
 import com.wangjf.myweibo.makeweibo.bean.MakePicBean;
 import com.wangjf.myweibo.makeweibo.bean.MakeWeiboBean;
-import com.wangjf.myweibo.makeweibo.presenter.MakeWeiboImpl;
+import com.wangjf.myweibo.makeweibo.present.PresentImpl;
 import com.yongchun.library.view.ImageSelectorActivity;
 
 import java.io.File;
@@ -37,7 +37,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 
-public class MakeWeiboActivity extends AppCompatActivity implements View.OnClickListener,MakeWeiboViewIntf {
+public class MakeWeiboActivity extends AppCompatActivity implements View.OnClickListener,ViewIntf {
 
     private RecyclerView mRvAddPic;
     private MakeWeiboAdapter mAdapter;
@@ -46,7 +46,7 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
     private TextView mMakeWeiboSend;
     private TextView mMakeWeiboCancel;
     private EditText mMakeWeiboContext;
-    private MakeWeiboImpl mPresenter;
+    private PresentImpl mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.layout_make_weibo);
 
         //初始化presenter层
-        mPresenter = new MakeWeiboImpl(this);
+        mPresenter = new PresentImpl(this);
 
         //初始化控件
         mMakeWeiboCancel = (TextView)findViewById(R.id.id_make_weibo_cancal);
@@ -107,6 +107,7 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
         //创建微博内容，并转换为json字符串
         weiboBean.setContent(mMakeWeiboContext.getText().toString());
         weiboBean.setType("公开");
+        weiboBean.setUid(ParamConfig.getmUserId());
         String weiboJson = makeGson.toJson(weiboBean);
 
         //初始化压缩引擎
@@ -223,6 +224,8 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void showFailMsg(String msg) {
         Toasty.warning(this,msg).show();
+        mMakeWeiboSend.setClickable(true);
+        mMakeWeiboSend.setTextColor(Color.rgb(0,0,0));
     }
 
     public class MakeWeiboViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

@@ -17,10 +17,10 @@ import java.util.Map;
  * Created by wangjf on 17-11-21.
  */
 
-public class MakeWeiboModel implements MakeWeiboModelIntf {
+public class ModelImpl implements ModelIntf {
 
     @Override
-    public void addWeibo(String weiboJson, String picJson, List<File> picfs, final OnUploadWeiboListener listener) {
+    public void addWeibo(String weiboJson, String picJson, List<File> picfs, final OnModelListener listener) {
 
         String UrlMakeWeibo = String.format("%s/%s", ParamConfig.getUrlHost(),
                 "?service=weibo.makeweibo");
@@ -28,6 +28,7 @@ public class MakeWeiboModel implements MakeWeiboModelIntf {
 
         Map<String,String> params = new HashMap<>();
         params.put("weibo",weiboJson);
+        params.put("tokenid",ParamConfig.getTokenid());
         if(picJson != null)
             params.put("pics",picJson);
 

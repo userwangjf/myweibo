@@ -1,6 +1,8 @@
 package com.wangjf.loginin.present;
 
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.wangjf.loginin.bean.BaseBean;
 import com.wangjf.loginin.bean.LogininBean;
@@ -29,18 +31,20 @@ public class PresentImpl implements PresentIntf,OnModelListener {
 
     @Override
     public void onSuccess(String json) {
+        Log.i("WJF","Loginin: " + json);
         Gson gson = new Gson();
         BaseBean bean = gson.fromJson(json,BaseBean.class);
         if(bean.getRet() == 200) {
             LogininBean logininBean = gson.fromJson(json,LogininBean.class);
             String tokenid = logininBean.getData().getTokenid();
             ParamConfig.setTokenid(tokenid);
+            ParamConfig.setmUserId(logininBean.getData().getUid());
             //管理员
-            if(logininBean.getData().getAdmin() > 0) {
-                ParamConfig.setmAdminLogin(true);
+            if(logininBean.getData().getAdmin().equals("1")) {
+                ParamConfig.setmAdminLogin("1");
                 mViewIntf.showOkMsg("管理员登录成功: " + tokenid);
             } else {
-                ParamConfig.setmAdminLogin(false);
+                ParamConfig.setmAdminLogin("0");
                 mViewIntf.showOkMsg("登录成功: " + tokenid);
             }
 

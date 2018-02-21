@@ -8,7 +8,7 @@ public class LogininBean {
 
     /**
      * ret : 200
-     * data : {"admin":0,"tokenid":"5ccb980c4e0bec6b6f96ee7914e36e84"}
+     * data : {"uid":"101","admin":"0","tokenid":"4642ace883587d5d6cc81935c9eb6f5c"}
      * msg :
      */
 
@@ -42,18 +42,28 @@ public class LogininBean {
 
     public static class DataBean {
         /**
+         * uid : 101
          * admin : 0
-         * tokenid : 5ccb980c4e0bec6b6f96ee7914e36e84
+         * tokenid : 4642ace883587d5d6cc81935c9eb6f5c
          */
 
-        private int admin;
+        private String uid;
+        private String admin;
         private String tokenid;
 
-        public int getAdmin() {
+        public String getUid() {
+            return uid;
+        }
+
+        public void setUid(String uid) {
+            this.uid = uid;
+        }
+
+        public String getAdmin() {
             return admin;
         }
 
-        public void setAdmin(int admin) {
+        public void setAdmin(String admin) {
             this.admin = admin;
         }
 

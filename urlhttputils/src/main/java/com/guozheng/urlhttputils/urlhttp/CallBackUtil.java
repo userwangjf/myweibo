@@ -21,8 +21,7 @@ import java.io.InputStreamReader;
 public abstract class CallBackUtil<T> {
     static Handler mMainHandler = new Handler(Looper.getMainLooper());
 
-
-    public  void onProgress(float progress, long total ){}
+    public void onProgress(float progress, long total ){}
 
     void onError(final RealResponse response){
 

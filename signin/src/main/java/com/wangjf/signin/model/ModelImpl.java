@@ -7,13 +7,13 @@ import com.guozheng.urlhttputils.urlhttp.UrlHttpUtil;
 import com.wangjf.myweibo.config.ParamConfig;
 
 import java.util.Map;
+import java.util.Queue;
 
 /**
  * Created by wangjf on 17-11-21.
  */
 
 public class ModelImpl implements ModelIntf {
-
 
     @Override
     public void LoadBean(final OnModelListener listener, Map<String, String> params) {
@@ -41,6 +41,8 @@ public class ModelImpl implements ModelIntf {
                 listener.onSuccess(response);
             }
         });
+
     }
+
 
 }

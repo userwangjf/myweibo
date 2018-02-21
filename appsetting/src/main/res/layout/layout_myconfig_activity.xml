@@ -9,11 +9,11 @@
     <RelativeLayout
         android:id="@+id/top"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="#0071BC"
-        android:padding="12dip"
+        android:padding="8dp"
         android:textColor="#FFFFFF" >
 
         <TextView
