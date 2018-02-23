@@ -49,7 +49,9 @@ public class ParamConfig {
     }
 
     public static void LoginOut() {
-        SharedPreferencesUtils.init(mContext).clear();
+        SharedPreferencesUtils.init(mContext).putString("mTokenid","");
+        SharedPreferencesUtils.init(mContext).putString("mAdminLogin","");
+        SharedPreferencesUtils.init(mContext).putString("mUserId","");
         LoadParam();
     }
 

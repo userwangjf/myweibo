@@ -17,6 +17,7 @@
             android:id="@+id/idea_linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingTop="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:orientation="vertical">
@@ -24,7 +25,7 @@
             <EditText
                 android:id="@+id/id_make_weibo_context"
                 android:hint="输入内容..."
-                android:background="#e0e0e0"
+                android:background="#f0f0f0"
                 android:inputType="textMultiLine"
                 android:gravity="left|top"
                 android:minLines="3"

@@ -42,10 +42,10 @@ public class PresentImpl implements PresentIntf,OnModelListener {
             ParamConfig.setmUserId(logininBean.getData().getUid());
             //管理员
             if(logininBean.getData().getAdmin().equals("1")) {
-                ParamConfig.setmAdminLogin("1");
+                ParamConfig.setmAdminLogin("admin");
                 mViewIntf.showOkMsg("管理员登录成功: " + tokenid);
             } else {
-                ParamConfig.setmAdminLogin("0");
+                ParamConfig.setmAdminLogin("");
                 mViewIntf.showOkMsg("登录成功: " + tokenid);
             }
 

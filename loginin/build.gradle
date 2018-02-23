@@ -33,4 +33,5 @@ dependencies {
     compile project(':config')
     compile project(':gson')
     compile project(':topsnackbar')
+    compile project(':taskmanager')
 }

@@ -93,7 +93,7 @@ class RequestUtil{
                 response = new RealRequest().uploadFile(url, file,fileList,fileMap,fileKey,fileType,paramsMap,headerMap,callBack);
                 if(response.code == HttpURLConnection.HTTP_OK){
                     callBack.onSeccess(response);
-                }else {
+                } else {
                     callBack.onError(response);
                 }
             }

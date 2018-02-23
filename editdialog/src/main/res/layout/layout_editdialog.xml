@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dip"
         android:text="请输入:"
-        android:textColor="#1bbc9b"
+        android:textColor="#000000"
         android:textSize="20dp" />
 
     <EditText
@@ -26,7 +26,7 @@
         android:inputType="text"
         android:padding="5dip"
         android:textColor="#000000"
-        android:textSize="22dp"
+        android:textSize="20dp"
         android:textStyle="bold" />
 
     <LinearLayout

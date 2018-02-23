@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--发送微博界面 -->
+    <color name="post_bg">#FFFFFF</color>
+    <color name="post_hint">#808080</color>
+    <color name="post_text">#333333</color>
+    <color name="post_bottomBar_bg">#f9f9f9</color>
+
+    <color name="retweet_weibo_bg">#f7f7f7</color>
+    <color name="retweet_weibo_author">#313131</color>
+    <color name="retweet_weibo_text">#909090</color>
+
+    <!-- 发送按钮在普通状态下，不可点击 -->
+    <color name="normal_send_button_bg">#FFFFFF</color>
+    <color name="normal_send_button_stoke">#d8d8d8</color>
+    <color name="normal_send_button_text">#b5b5b5</color>
+
+    <!-- 发送按钮在按压状态下 -->
+    <color name="press_send_button_bg">#df7500</color>
+    <color name="press_send_button_stoke">#df7500</color>
+    <color name="press_send_button_text">#ffecd3</color>
+
+    <!-- 发送按钮在可以点击的状态下 -->
+    <color name="highlight_send_button_bg">#fe8300</color>
+    <color name="highlight_send_button_stoke">#fe8300</color>
+    <color name="highlight_send_button_text">#fbffff</color>
+
+    <color name="cancel_text">#494949</color><!--取消按钮文本颜色 -->
+    <color name="middle_send_text">#505050</color><!--topbar中间区域 发微博文本颜色 -->
+    <color name="middle_username_text">#b4b4b4</color><!--topbar中间区域 用户名文本颜色 -->
+
+
+</resources>

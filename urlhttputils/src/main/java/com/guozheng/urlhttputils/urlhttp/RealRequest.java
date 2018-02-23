@@ -3,8 +3,6 @@ package com.guozheng.urlhttputils.urlhttp;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.guozheng.sampleurlhttp.utils.ThreadUtils;
-
 import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -32,8 +30,8 @@ import java.util.Map;
     RealResponse getData(String requestURL, Map<String, String> headerMap){
         HttpURLConnection conn = null;
         try {
-            Log.d("WJF","test thread");
-            ThreadUtils.isInMainThread();
+            //Log.d("WJF","test thread");
+            //ThreadUtils.isInMainThread();
             conn= getHttpURLConnection(requestURL,"GET");
 
             conn.setDoInput(true);

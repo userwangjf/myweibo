@@ -1,4 +1,4 @@
-package com.guozheng.sampleurlhttp.utils;
+package com.guozheng.urlhttputils.urlhttp;
 
 import android.os.Looper;
 import android.util.Log;

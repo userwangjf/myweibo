@@ -2,28 +2,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
+    android:padding="9dp"
     android:id="@+id/id_make_weibo_head"
-    android:background="#f2f2f2">
+    android:background="#0071BC">
 
     <TextView
         android:id="@+id/id_make_weibo_cancal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:gravity="center"
         android:layout_alignParentLeft="true"
         android:clickable="true"
-        android:padding="10dp"
-        android:text="取 消"
+        android:text="取消"
         android:textColor="#000000"
         android:textSize="18sp" />
 
-
     <TextView
         android:id="@+id/id_make_weibo_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:gravity="center"
         android:layout_alignParentRight="true"
-        android:text="发 送"
-        android:padding="10dp"
+        android:text="发送"
+        android:background="@drawable/normal_send_button_bg"
         android:clickable="true"
         android:textColor="#000000"
         android:textSize="18sp" />

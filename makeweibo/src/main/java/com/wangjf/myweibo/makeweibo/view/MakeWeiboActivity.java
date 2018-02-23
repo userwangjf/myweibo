@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.androidadvance.topsnackbar.TSnackbar;
+import com.androidadvance.topsnackbar.TSnackbarUtils;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.jkt.tcompress.TCompress;
@@ -25,6 +27,7 @@ import com.wangjf.myweibo.makeweibo.R;
 import com.wangjf.myweibo.makeweibo.bean.MakePicBean;
 import com.wangjf.myweibo.makeweibo.bean.MakeWeiboBean;
 import com.wangjf.myweibo.makeweibo.present.PresentImpl;
+import com.wangjf.taskmanager.ExecuteTaskManager;
 import com.yongchun.library.view.ImageSelectorActivity;
 
 import java.io.File;
@@ -48,6 +51,8 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
     private EditText mMakeWeiboContext;
     private PresentImpl mPresenter;
 
+    private View    mSnackView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +60,8 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
 
         //初始化presenter层
         mPresenter = new PresentImpl(this);
+
+        mSnackView = findViewById(R.id.id_make_weibo_head);
 
         //初始化控件
         mMakeWeiboCancel = (TextView)findViewById(R.id.id_make_weibo_cancal);
@@ -73,6 +80,7 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
         mAdapter.notifyDataSetChanged();
     }
 
+    //用于启动本activity
     public static Intent newIntent(Context packageContext) {
         Intent intent = new Intent(packageContext, MakeWeiboActivity.class);
         //可携带参数
@@ -89,10 +97,15 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
         else if(id == R.id.id_make_weibo_send) {
             Log.i("WJF","start send weibo");
 
+            if(mMakeWeiboContext.getText().toString().equals("")) {
+                TSnackbarUtils.with(mSnackView).setMessage("内容不能为空").showWarning();
+                return ;
+            }
+
             //在微博创建成功前，关闭点击功能
             mMakeWeiboSend.setClickable(false);
             mMakeWeiboSend.setTextColor(Color.rgb(200,200,200));
-            Toasty.info(this,"开始上传微博，请等待...").show();
+            TSnackbarUtils.with(mSnackView).setMessage("开始上传微博，请等待").showSuccess();
             onClickSend();
         }
     }
