@@ -16,6 +16,7 @@ import com.wangjf.loginin.bean.BaseBean;
 import com.wangjf.loginin.present.PresentImpl;
 import com.wangjf.loginin.present.PresentIntf;
 import com.androidadvance.topsnackbar.SnackbarUtils;
+import com.wangjf.myutils.MyLogUtils;
 import com.wangjf.taskmanager.ExecuteTaskManager;
 
 import java.util.HashMap;
@@ -108,7 +109,8 @@ public class LogininActivity extends AppCompatActivity implements ViewIntf {
 
     @Override
     public void showFailMsg(String msg) {
-        Log.i("WJF",msg);
+        MyLogUtils.d(msg);
+        SnackbarUtils.with(mSnackBarView).setMessage(msg).show();
     }
 
     public Handler mHandler = new Handler() {

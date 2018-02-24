@@ -2,6 +2,7 @@ package com.wangjf.signin.present;
 
 
 import com.google.gson.Gson;
+import com.wangjf.myutils.MyLogUtils;
 import com.wangjf.signin.bean.BaseBean;
 import com.wangjf.signin.bean.SigninBean;
 import com.wangjf.signin.model.ModelImpl;
@@ -28,6 +29,7 @@ public class PresentImpl implements PresentIntf,OnModelListener {
 
     @Override
     public void onSuccess(String json) {
+        MyLogUtils.d("signin::osSuccess: "+json);
         Gson gson = new Gson();
         BaseBean bean = gson.fromJson(json,BaseBean.class);
         if(bean.getRet() == 200) {
