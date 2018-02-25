@@ -1,20 +1,26 @@
 package com.wangjf.myweibo.makeweibo.view;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.ExifInterface;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.androidadvance.topsnackbar.TSnackbar;
@@ -22,6 +28,7 @@ import com.androidadvance.topsnackbar.TSnackbarUtils;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.jkt.tcompress.TCompress;
+import com.wangjf.myutils.MyLogUtils;
 import com.wangjf.myweibo.config.ParamConfig;
 import com.wangjf.myweibo.makeweibo.R;
 import com.wangjf.myweibo.makeweibo.bean.MakePicBean;
@@ -52,6 +59,7 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
     private PresentImpl mPresenter;
 
     private View    mSnackView;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +69,7 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
         //初始化presenter层
         mPresenter = new PresentImpl(this);
 
+        //snackbar显示view
         mSnackView = findViewById(R.id.id_make_weibo_head);
 
         //初始化控件
@@ -78,6 +87,9 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
         //添加图片的图标
         mData.add("R.drawable.make_weibo_add_pic");
         mAdapter.notifyDataSetChanged();
+
+        //创建
+        createProgressBar();
     }
 
     //用于启动本activity
@@ -88,6 +100,20 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
         return intent;
     }
 
+    //在屏幕中间显示progressbar
+    private void createProgressBar(){
+        //整个Activity布局的最终父布局,参见参考资料
+        FrameLayout rootFrameLayout=(FrameLayout) findViewById(android.R.id.content);
+        FrameLayout.LayoutParams layoutParams=
+                new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.gravity= Gravity.CENTER;
+        mProgressBar=new ProgressBar(this);
+        mProgressBar.setLayoutParams(layoutParams);
+
+        rootFrameLayout.addView(mProgressBar);
+        mProgressBar.setVisibility(View.GONE);
+    }
+
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -95,7 +121,7 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
             finish();
         }
         else if(id == R.id.id_make_weibo_send) {
-            Log.i("WJF","start send weibo");
+            MyLogUtils.d("makeweibo: start send weibo");
 
             if(mMakeWeiboContext.getText().toString().equals("")) {
                 TSnackbarUtils.with(mSnackView).setMessage("内容不能为空").showWarning();
@@ -103,104 +129,28 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
             }
 
             //在微博创建成功前，关闭点击功能
-            mMakeWeiboSend.setClickable(false);
-            mMakeWeiboSend.setTextColor(Color.rgb(200,200,200));
+            setSendEnable(false);
             TSnackbarUtils.with(mSnackView).setMessage("开始上传微博，请等待").showSuccess();
-            onClickSend();
+
+            String context = mMakeWeiboContext.getText().toString();
+
+            //上传微博
+            mPresenter.addWeibo(context,mData);
+
         }
     }
 
-    public void onClickSend() {
-        MakeWeiboBean weiboBean = new MakeWeiboBean();
-        MakePicBean picBean = new MakePicBean();
-        List<File> picfs = new ArrayList<>();
-        List<MakePicBean.PicInfo> picInfos = new ArrayList<>();
-        Gson makeGson = new Gson();
-
-        //创建微博内容，并转换为json字符串
-        weiboBean.setContent(mMakeWeiboContext.getText().toString());
-        weiboBean.setType("公开");
-        weiboBean.setUid(ParamConfig.getmUserId());
-        String weiboJson = makeGson.toJson(weiboBean);
-
-        //初始化压缩引擎
-        TCompress tCompress = new TCompress.Builder()
-                .setMaxWidth(1280)
-                .setMaxHeight(1280)
-                .setQuality(100)
-                .setFormat(Bitmap.CompressFormat.JPEG)
-                .setConfig(Bitmap.Config.ARGB_8888)
-                .build();
-
-        //添加图片信息
-        if (mData.size() == 1) {
-            picBean = null;
-            picfs = null;
+    private void setSendEnable(boolean enable) {
+        if(enable) {
+            mMakeWeiboSend.setClickable(true);
+            mMakeWeiboSend.setTextColor(Color.rgb(0,0,0));
         } else {
-            //如果有图片，则添加图片日期
-            for(int i=0;i<mData.size()-1;i++) {
-
-                File compressedFile = tCompress.compressedToFile(new File(mData.get(i)));
-                if (compressedFile == null) {
-                    //请查看文件权限问题（其他问题基本不存在，可以查看日志详情）
-                    Log.i("WJF","压缩失败");
-                    return;
-                } else {
-                    picfs.add(compressedFile);
-                }
-
-                try {
-                    //通过Exif获取照片的拍摄日期
-                    ExifInterface exif = new ExifInterface(mData.get(i));
-                    String exif_date = exif.getAttribute(ExifInterface.TAG_DATETIME);
-                    //装载数据到bean
-                    MakePicBean.PicInfo picInfo = new MakePicBean.PicInfo();
-                    if(exif_date == null) {
-                        File srcFile = new File(mData.get(i));
-                        srcFile.lastModified();
-                        DateFormat df = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
-                        picInfo.setCtime(df.format(srcFile.lastModified()));
-                    } else {
-                        picInfo.setCtime(exif_date);
-                    }
-                    picInfo.setFname(getFileName(mData.get(i)));//先装入文件路径
-                    picInfos.add(picInfo);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        //将图片信息转换为json字符串
-        String picJson;
-        //
-        if(picfs == null) {
-            picJson = "{\"picInfos\":[]}";
-        } else {
-            picBean.setPicInfos(picInfos);
-            picJson = makeGson.toJson(picBean);
-        }
-
-        //发送到服务器
-        mPresenter.addWeibo(weiboJson,picJson,picfs);
-    }
-
-    public void initCompress() {
-
-    }
-
-    public String getFileName(String pathName) {
-        int start = pathName.lastIndexOf("/");
-        if (start != -1 ) {
-            return pathName.substring(start + 1);
-        } else {
-            start = pathName.lastIndexOf("\\");
-            if(start != -1)
-                return pathName.substring(start + 1);
-            return null;
+            mMakeWeiboSend.setClickable(false);
+            mMakeWeiboSend.setTextColor(Color.rgb(100,100,100));
         }
     }
 
+    //获取用户选择的图片。
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == ImageSelectorActivity.REQUEST_IMAGE){
@@ -210,33 +160,31 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
             mAdapter.notifyDataSetChanged();
 
             for(int i=0;i<images.size();i++) {
-                Log.i("WJF","add Image: " + images.get(i));
+                MyLogUtils.d("add Image: " + images.get(i));
             }
         }
     }
 
     @Override
     public void showOkMsg(String msg) {
-        Toasty.info(this,msg).show();
-        mMakeWeiboSend.setClickable(true);
-        mMakeWeiboSend.setTextColor(Color.rgb(0,0,0));
+        TSnackbarUtils.with(mSnackView).setMessage(msg).showSuccess();
+        setSendEnable(true);
     }
 
     @Override
     public void showProgress() {
-
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-
+        mProgressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void showFailMsg(String msg) {
-        Toasty.warning(this,msg).show();
-        mMakeWeiboSend.setClickable(true);
-        mMakeWeiboSend.setTextColor(Color.rgb(0,0,0));
+        TSnackbarUtils.with(mSnackView).setMessage(msg).showError();
+        setSendEnable(true);
     }
 
     public class MakeWeiboViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -333,6 +281,7 @@ public class MakeWeiboActivity extends AppCompatActivity implements View.OnClick
                 return mData.size();
         }
     }
+
 
 
 }

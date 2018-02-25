@@ -1,16 +1,26 @@
 package com.wangjf.myweibo.makeweibo.present;
 
+import android.graphics.Bitmap;
+import android.media.ExifInterface;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.jkt.tcompress.TCompress;
 import com.wangjf.myutils.MyLogUtils;
+import com.wangjf.myweibo.config.ParamConfig;
 import com.wangjf.myweibo.makeweibo.bean.BaseBean;
+import com.wangjf.myweibo.makeweibo.bean.MakePicBean;
+import com.wangjf.myweibo.makeweibo.bean.MakeWeiboBean;
 import com.wangjf.myweibo.makeweibo.model.ModelImpl;
 import com.wangjf.myweibo.makeweibo.model.ModelIntf;
 import com.wangjf.myweibo.makeweibo.model.OnModelListener;
 import com.wangjf.myweibo.makeweibo.view.ViewIntf;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,7 +42,7 @@ public class PresentImpl implements PresentIntf,OnModelListener {
     @Override
     public void onSuccess(String json) {
 
-        MyLogUtils.d("MakeWeibo::onSuccess: " + json);
+        MyLogUtils.d("get json: " + json);
         Gson gson = new Gson();
         BaseBean baseBean = gson.fromJson(json,BaseBean.class);
 
@@ -44,6 +54,8 @@ public class PresentImpl implements PresentIntf,OnModelListener {
             mWeiboView.showFailMsg(baseBean.getMsg());
         }
 
+        mWeiboView.hideProgress();
+
     }
 
     @Override
@@ -53,9 +65,9 @@ public class PresentImpl implements PresentIntf,OnModelListener {
     }
 
     @Override
-    public void addWeibo(String weiboJson, String picJson, List<File> picfs) {
-        MyLogUtils.d("makeweibo::addWeibo:weiboJson: " + weiboJson);
-        MyLogUtils.d("makeweibo::addWeibo:picJson: " + picJson);
-        mWeiboModel.addWeibo(weiboJson,picJson,picfs,this);
+    public void addWeibo(String weiboContext, List<String> picPath) {
+        mWeiboModel.addWeibo(weiboContext,picPath,this);
+        mWeiboView.showProgress();
     }
+
 }

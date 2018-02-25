@@ -82,7 +82,16 @@ public class ShowWeiboBean implements Serializable {
             private String collect;
             private String comment;
             private String uid;
+            private String username;
             private List<PicBean> pic;
+
+            public String getUsername() {
+                return username;
+            }
+
+            public void setUsername(String username) {
+                this.username = username;
+            }
 
             public String getId() {
                 return id;

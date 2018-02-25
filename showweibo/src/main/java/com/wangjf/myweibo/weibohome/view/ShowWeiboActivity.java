@@ -1,8 +1,11 @@
 package com.wangjf.myweibo.weibohome.view;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,7 +32,7 @@ import com.wangjf.myweibo.config.ParamConfig;
 import com.wangjf.myweibo.makeweibo.view.MakeWeiboActivity;
 import com.wangjf.myweibo.weibohome.R;
 import com.wangjf.myweibo.weibohome.bean.ShowWeiboBean;
-import com.wangjf.myweibo.weibohome.presenter.ShowWeiboImpl;
+import com.wangjf.myweibo.weibohome.presenter.PresentImpl;
 import com.wc.dragphoto.widget.ImageShowActivity;
 
 
@@ -44,7 +47,7 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
     RecyclerView        mRecyclerView;
     SimpleRefreshLayout mSimpleRefreshLayout;
     ShowWeiboAdapter    mAdapter;
-    private ShowWeiboImpl mPresenter;
+    private PresentImpl mPresenter;
     private RelativeLayout mBarHome, mBarMessage, mBarDiscovery, mBarProfile;
     private ImageView mBarMakeWeibo;
     List<ShowWeiboBean.DataBean.WeiboBean> mData = new ArrayList<>();
@@ -98,7 +101,7 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
         });
 
 
-        mPresenter = new ShowWeiboImpl(this);
+        mPresenter = new PresentImpl(this);
 
         createProgressBar();
     }
@@ -122,12 +125,15 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
 
         TextView mTextView;
         MultImageView mMultImage;
+        TextView mProfileName;
+        TextView mProfileTime;
 
         public ShowWeiboViewHolder(View itemView) {
             super(itemView);
             mTextView = (TextView) itemView.findViewById(R.id.id_sweibo_context);
             mMultImage = (MultImageView) itemView.findViewById(R.id.id_sweibo_image);
-
+            mProfileName = (TextView) itemView.findViewById(R.id.profile_name);
+            mProfileTime = (TextView)itemView.findViewById(R.id.profile_time);
         }
     }
 
@@ -156,6 +162,8 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
                 return;
             else if(mData.size() > position) {
                 holder.mTextView.setText(mData.get(position).getContent());
+                holder.mProfileName.setText(mData.get(position).getUsername());
+                holder.mProfileTime.setText(mData.get(position).getTime());
 
                 if(mData.get(position).getPic() != null) {
                     //防止显示错乱
@@ -241,4 +249,5 @@ public class ShowWeiboActivity extends AppCompatActivity implements SimpleRefres
     public void showFailMsg(String msg) {
         Toasty.warning(ShowWeiboActivity.this,msg,Toast.LENGTH_SHORT,true).show();
     }
+
 }

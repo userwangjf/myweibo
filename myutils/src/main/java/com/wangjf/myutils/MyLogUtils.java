@@ -36,7 +36,27 @@ public class MyLogUtils {
         if (!LOG_D)
             return;
 
-        Log.d(TAG, message);
+        Log.d(TAG, getCallPrefix() + message);
+    }
+
+    //获取调用者的类名和行号
+    public static String getCallPrefix() {
+        StackTraceElement stack[] = (new Throwable()).getStackTrace();
+        /*
+        for (int i = 0; i < stack.length; i++)
+        {
+            StackTraceElement s = stack[i];
+            System.out.format(" ClassName:%d\t%s\n", i, s.getClassName());
+            System.out.format("MethodName:%d\t%s\n", i, s.getMethodName());
+            System.out.format("  FileName:%d\t%s\n", i, s.getFileName());
+            System.out.format("LineNumber:%d\t%s\n\n", i, s.getLineNumber());
+        }
+        */
+
+        String prefix = stack[2].getClassName() + "::" + stack[2].getMethodName() + "(" +
+                stack[2].getLineNumber() + ") ";
+
+        return prefix;
     }
 
     public static void v(String message){

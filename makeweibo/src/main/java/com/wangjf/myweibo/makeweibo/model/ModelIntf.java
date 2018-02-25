@@ -8,5 +8,5 @@ import java.util.List;
  */
 
 public interface ModelIntf {
-    void addWeibo(String weiboJson, String picJson, List<File> picfs, final OnModelListener listener);
+    void addWeibo(String weiboContext, List<String> picPath, final OnModelListener listener);
 }

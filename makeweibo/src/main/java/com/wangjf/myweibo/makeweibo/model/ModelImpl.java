@@ -25,7 +25,7 @@ public class ModelImpl implements ModelIntf, ExecuteTaskManager.GetExcuteTaskCal
     private OnModelListener listener;
 
     @Override
-    public void addWeibo(String weiboJson, String picJson, List<File> picfs, final OnModelListener listener) {
+    public void addWeibo(String weiboContext, List<String> picPath, final OnModelListener listener) {
 
         this.listener = listener;
 
@@ -38,18 +38,9 @@ public class ModelImpl implements ModelIntf, ExecuteTaskManager.GetExcuteTaskCal
         MyLogUtils.d("makeWeibo::ModelImpl: " + UrlMakeWeibo);
         asyncUpload.setPostUrl(UrlMakeWeibo);
 
-        Map<String,String> params = new HashMap<>();
-        params.put("weibo",weiboJson);
-        params.put("tokenid",ParamConfig.getTokenid());
-        if(picJson != null) {
-            params.put("pics", picJson);
-        }
-        asyncUpload.setPostParams(params);
-
-        if(picfs != null) {
-            asyncUpload.setPostFile(picfs);
-        }
-
+        asyncUpload.setWeiboText(weiboContext);
+        asyncUpload.setPicPath(picPath);
+        asyncUpload.setTokenid(ParamConfig.getTokenid());
 
         ExecuteTaskManager.getInstance().getData(asyncUpload,this);
 
@@ -58,16 +49,16 @@ public class ModelImpl implements ModelIntf, ExecuteTaskManager.GetExcuteTaskCal
     @Override
     public void onDataLoaded(ExecuteTask task) {
         if(task == null) {
-            MyLogUtils.d("makeweibo::onDataLoaded:error");
+            MyLogUtils.d("error: null pointer");
             return ;
         }
 
         if(task.getStatus() > 0) {
-            MyLogUtils.d("makeweibo::onDataLoaded:json " + task.getJson());
+            MyLogUtils.d("get json: " + task.getJson());
             listener.onSuccess(task.getJson());
 
         } else {
-            MyLogUtils.d("makeweibo::onDataLoaded:error " + task.getMsg());
+            MyLogUtils.d("get err: " + task.getMsg());
             listener.onFailure(task.getMsg());
         }
 

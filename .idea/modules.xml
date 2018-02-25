@@ -4,14 +4,11 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ImagePicker/ImagePicker.iml" filepath="$PROJECT_DIR$/ImagePicker/ImagePicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/MVP/MVP.iml" filepath="$PROJECT_DIR$/MVP/MVP.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MVP/MVP.iml" filepath="$PROJECT_DIR$/MVP/MVP.iml" />
       <module fileurl="file://$PROJECT_DIR$/MultImageView/MultImageView.iml" filepath="$PROJECT_DIR$/MultImageView/MultImageView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/appsetting/appsetting.iml" filepath="$PROJECT_DIR$/appsetting/appsetting.iml" />
-      <module fileurl="file://$PROJECT_DIR$/appsetting/appsetting.iml" filepath="$PROJECT_DIR$/appsetting/appsetting.iml" />
       <module fileurl="file://$PROJECT_DIR$/circularprogressbar/circularprogressbar.iml" filepath="$PROJECT_DIR$/circularprogressbar/circularprogressbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/config/config.iml" filepath="$PROJECT_DIR$/config/config.iml" />
-      <module fileurl="file://$PROJECT_DIR$/editdialog/editdialog.iml" filepath="$PROJECT_DIR$/editdialog/editdialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/editdialog/editdialog.iml" filepath="$PROJECT_DIR$/editdialog/editdialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/gson/gson.iml" filepath="$PROJECT_DIR$/gson/gson.iml" />
       <module fileurl="file://$PROJECT_DIR$/loginin/loginin.iml" filepath="$PROJECT_DIR$/loginin/loginin.iml" />
@@ -23,17 +20,13 @@
       <module fileurl="file://$PROJECT_DIR$/photoview/photoview.iml" filepath="$PROJECT_DIR$/photoview/photoview.iml" />
       <module fileurl="file://$PROJECT_DIR$/progressbar/progressbar.iml" filepath="$PROJECT_DIR$/progressbar/progressbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/promptdialog/promptdialog.iml" filepath="$PROJECT_DIR$/promptdialog/promptdialog.iml" />
-      <module fileurl="file://$PROJECT_DIR$/promptdialog/promptdialog.iml" filepath="$PROJECT_DIR$/promptdialog/promptdialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/showweibo/showweibo.iml" filepath="$PROJECT_DIR$/showweibo/showweibo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/signin/signin.iml" filepath="$PROJECT_DIR$/signin/signin.iml" />
       <module fileurl="file://$PROJECT_DIR$/signin/signin.iml" filepath="$PROJECT_DIR$/signin/signin.iml" />
       <module fileurl="file://$PROJECT_DIR$/simplerefreshlayout/simplerefreshlayout.iml" filepath="$PROJECT_DIR$/simplerefreshlayout/simplerefreshlayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/swipeback/swipeback.iml" filepath="$PROJECT_DIR$/swipeback/swipeback.iml" />
       <module fileurl="file://$PROJECT_DIR$/taskmanager/taskmanager.iml" filepath="$PROJECT_DIR$/taskmanager/taskmanager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/taskmanager/taskmanager.iml" filepath="$PROJECT_DIR$/taskmanager/taskmanager.iml" />
       <module fileurl="file://$PROJECT_DIR$/tcompress/tcompress.iml" filepath="$PROJECT_DIR$/tcompress/tcompress.iml" />
       <module fileurl="file://$PROJECT_DIR$/toasty/toasty.iml" filepath="$PROJECT_DIR$/toasty/toasty.iml" />
-      <module fileurl="file://$PROJECT_DIR$/topsnackbar/topsnackbar.iml" filepath="$PROJECT_DIR$/topsnackbar/topsnackbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/topsnackbar/topsnackbar.iml" filepath="$PROJECT_DIR$/topsnackbar/topsnackbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/urlhttputils/urlhttputils.iml" filepath="$PROJECT_DIR$/urlhttputils/urlhttputils.iml" />
     </modules>

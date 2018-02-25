@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.androidadvance.topsnackbar.TSnackbar;
 import com.androidadvance.topsnackbar.TSnackbarUtils;
 import com.wangjf.editdialog.EditDialog;
 import com.wangjf.loginin.view.LogininActivity;
@@ -104,7 +105,7 @@ public class AppSetting extends AppCompatActivity {
         mListSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TSnackbarUtils.with(mSnackBarView).setMessage("开发中").showSuccess();
+                TSnackbarUtils.with(mSnackBarView).setMessage(ParamConfig.getTokenid()).showSuccess();
 
             }
         });

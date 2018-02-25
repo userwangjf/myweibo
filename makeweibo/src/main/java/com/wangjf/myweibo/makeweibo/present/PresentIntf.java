@@ -8,5 +8,5 @@ import java.util.List;
  */
 
 public interface PresentIntf {
-    void addWeibo(String weiboJson, String picJson, List<File> picfs);
+    void addWeibo(String weiboContext, List<String> picPath);
 }

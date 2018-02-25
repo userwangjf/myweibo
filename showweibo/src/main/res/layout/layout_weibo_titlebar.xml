@@ -36,7 +36,7 @@
 
             </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -44,6 +44,7 @@
                     android:id="@+id/profile_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:text="16分钟前  "
                     android:textColor="@color/weibo_titlebar_profile_time"
                     android:textSize="12sp" />
@@ -52,10 +53,11 @@
                     android:id="@+id/weiboComeFrom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:text="来自 微博weibo.com"
                     android:textColor="@color/weibo_titlebar_comefrom"
                     android:textSize="12sp" />
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 

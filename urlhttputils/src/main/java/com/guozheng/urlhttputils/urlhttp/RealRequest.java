@@ -3,6 +3,8 @@ package com.guozheng.urlhttputils.urlhttp;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.wangjf.myutils.MyLogUtils;
+
 import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -165,6 +167,11 @@ import java.util.Map;
             strBuf.append(paramsMap.get(key));
             strBuf.append(LINE_END);
         }
+        //wangjf add 结束分隔符，没有结束分隔符，导致参数的value带了\r\n，并且不同的版本还不一样
+        strBuf.append(TWO_HYPHENS);
+        strBuf.append(BOUNDARY);
+        strBuf.append(TWO_HYPHENS);
+        //MyLogUtils.d(strBuf.toString());
         return strBuf.toString();
     }
 

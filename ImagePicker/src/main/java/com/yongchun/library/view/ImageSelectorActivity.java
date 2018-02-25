@@ -1,9 +1,12 @@
 package com.yongchun.library.view;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -282,4 +285,5 @@ public class ImageSelectorActivity extends SelectorBaseActivity {
         setResult(RESULT_OK, new Intent().putStringArrayListExtra(REQUEST_OUTPUT, images));
         onBackPressed();
     }
+
 }

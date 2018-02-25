@@ -110,13 +110,13 @@ public class LogininActivity extends AppCompatActivity implements ViewIntf {
     @Override
     public void showFailMsg(String msg) {
         MyLogUtils.d(msg);
-        SnackbarUtils.with(mSnackBarView).setMessage(msg).show();
+        SnackbarUtils.with(mSnackBarView).setMessage(msg).showError();
     }
 
     public Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            Log.i("WJF","LoginIn 成功");
+            MyLogUtils.i("LoginIn exit");
             Intent intentRet = new Intent();
             intentRet.putExtra("loginin_state",true);
             setResult(RESULT_OK,intentRet);
